@@ -1,0 +1,48 @@
+<configuration>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="toAFile" class="ch.qos.logback.core.FileAppender">
+        <file>logfiles/logfile.log</file>
+        <append>true</append>
+        <encoder>
+                 <pattern>%date [%thread] %-5level %logger{36} - %msg%n</pattern>
+<!--             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern> -->
+        </encoder>
+<!--                <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--                    <level>ERROR</level>-->
+<!--                </filter>-->
+    </appender>
+
+
+<!--    <appender name="toAFile" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+<!--        <file>logfiles/logfile.log</file>-->
+<!--        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+<!--            <fileNamePattern>logfiles/logs.%i.zip</fileNamePattern>-->
+<!--            <minIndex>1</minIndex>-->
+<!--            <maxIndex>5</maxIndex>-->
+<!--        </rollingPolicy>-->
+
+<!--        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">-->
+<!--            <maxFileSize>5KB</maxFileSize>-->
+<!--        </triggeringPolicy>-->
+<!--        <encoder>-->
+<!--            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>-->
+<!--        </encoder>-->
+<!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
+<!--            <level>ERROR</level>-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+    <logger name="be.belfius">
+        <appender-ref ref="toAFile" />
+    </logger>
+
+    <root level="TRACE">
+        <appender-ref ref="Console" />
+    </root>
+
+</configuration>

@@ -6,11 +6,102 @@
 	<artifactId>Games2</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
+	<!-- map ${} variable -->
+
+
 	<properties>
-<!-- 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
+
+
+	<profiles>
+
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<env>dev</env>
+			</properties>
+		</profile>
+		<profile>
+			<id>prd</id>
+			<properties>
+				<env>prd</env>
+			</properties>
+		</profile>
+
+	</profiles>
+
+
+	<build>
+
+		<!-- Loading all ${} -->
+		<filters>
+			<filter>src/main/resources/env/config.${env}.properties</filter>
+		</filters>
+
+		<!-- Map ${} into resources -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>*.properties</include>
+					<include>logback.xml</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+
+
+			<!-- ne fonctionne pas en eclipse IDE -->
+			<!-- display active profile in compile phase -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-help-plugin</artifactId> -->
+			<!-- <version>3.1.0</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <id>show-profiles</id> -->
+			<!-- <phase>compile</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>active-profiles</goal> -->
+			<!-- </goals> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+			<!-- pour pouvoir faire un run du jar file -->
+			<!-- <plugin> -->
+			<!-- <groupId>org.apache.maven.plugins</groupId> -->
+			<!-- <artifactId>maven-shade-plugin</artifactId> -->
+			<!-- <version>3.2.0</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <phase>package</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>shade</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <transformers> -->
+			<!-- <transformer -->
+			<!-- implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"> -->
+			<!-- <mainClass>be.belfius.Games2.App1</mainClass> -->
+			<!-- </transformer> -->
+			<!-- </transformers> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
+
+		</plugins>
+	</build>
+
 
 	<dependencies>
 		<!-- if you're using logback then comment out the next lines because it 

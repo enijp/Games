@@ -1,6 +1,8 @@
 package be.belfius.games;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 //import org.apache.logging.log4j.core.Logger;
 
@@ -11,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Properties;
 import java.util.Scanner;
 //import java.util.logging.Logger;
 
@@ -28,14 +31,32 @@ public class GamesApplication {
 	
 	private Scanner scanner = new Scanner(System.in);
 	private GamesServices gamesServices = new GamesServices();
+	
+	private static String defaultFolder = "";
+	private static String defaultOutputFileName = "";
 
 	public static void main(String[] args) {
 		GamesApplication myApp = new GamesApplication();
 		System.setProperty("org.slf4j.simpleLogger.showDateTime", "true");  //Use this setting to show the date and time
         System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "yyyy-MM-dd HH:mm:ss"); //Use this setting to format te date and time
 		
-        logger.trace("GamesApplication starts!");
+        logger.info("GamesApplication starts!");
 		   
+      //read properties
+        logger.trace("reading properties");
+      		Properties prop = myApp.loadPropertiesFile("config.properties");
+              prop.forEach((k, v) -> System.out.println("key=" + k + " ; value=" + v));
+
+             System.out.println("default directory=" + prop.get("fi.defaultOutputFolder"));
+             System.out.println("default output filename=" + prop.get("fi.defaultOutputFileName"));
+      		
+             logger.info("running with properties for <" + prop.get("exec.env")+ "> environment");
+             
+		defaultFolder = prop.get("fi.defaultOutputFolder").toString();
+		defaultOutputFileName = prop.get("fi.defaultOutputFileName").toString();
+		logger.trace("default folder="+defaultFolder );
+		logger.trace("default output filename="+defaultOutputFileName );
+        
 		String url = "jdbc:mysql://localhost:3306/games";
 		String login = "root";
 		String password = "";
@@ -52,6 +73,8 @@ public class GamesApplication {
 		HashMap<Integer, String> mapDifficulty = myApp.fillDifficultyMap(myCon);
 		logger.trace("hashmap mapDifficulty loaded");
 		mapDifficulty.forEach((k,v) -> System.out.println("Key = " + k + ", Value = " + v));
+		
+				
 		
 		boolean loop = true;
 		while (loop) {
@@ -97,7 +120,7 @@ public class GamesApplication {
 				System.out.println("1) sorted via SQL");
 				myApp.showAllGamesSortedViaSql(myCon);
 				// ensuite via le tri sur les games de la classe Game
-				System.out.println("1) sorted via internal sort");
+				System.out.println("2) sorted via internal sort");
 				myApp.showAllGamesSortedViaInternal(myCon);
 				break;
 			case "6":
@@ -163,12 +186,7 @@ public class GamesApplication {
 					System.out.println(e.getMessage());
 
 				}
-				/*
-				 * myApp.showAllGamesWithCategory(myCon, mapCategory); // ask to the user to
-				 * input a game name to print all this game's details try {
-				 * myApp.showAllDetailsGameSelectedByName(myApp.askForGameName(), myCon,
-				 * mapCategory, mapDifficulty); } catch (Exception e) { e.printStackTrace(); }
-				 */
+				
 				break;
 			case "9":
 				// introduire le borrower name et donner la liste des
@@ -182,7 +200,7 @@ public class GamesApplication {
 				}
 				break;
 			case "10":// list of borrowed games between 2 dates
-				// demander les 2 dates et vÃ©rifier qu'elles sont correctes
+				// demander les 2 dates et vérifier qu'elles sont correctes
 				Date startDate = myApp.askForDate("Please enter the start date of the borrowing:");
 				if (startDate == null)
 					break;
@@ -196,7 +214,7 @@ public class GamesApplication {
 				myApp.showBorrowedGamesBetween2Dates(myCon, startDate, endDate);
 
 				break;
-			case "11"://Ã©crire la liste des games dans un fchier
+			case "11"://écrire la liste des games dans un fchier
 				try {
 					myApp.writeGameDataSelectedByNameToFile(myApp.askForGameName(), myCon, mapCategory, mapDifficulty);
 				} catch (Exception e) {
@@ -317,8 +335,6 @@ public class GamesApplication {
 		try {
 			myBorrowerName = myInputText("Please enter the borrower name (or a part of) you want to search for:");
 			if (myBorrowerName.isEmpty()) {
-				// throw new inputStringException("Your entry is empty! You must enter
-				// something");
 				// if entry empty, return to the menu
 				throw new inputStringException("Your entry is empty!  I'm returning to the menu...");
 			}
@@ -387,19 +403,21 @@ public class GamesApplication {
 	}
 	
 	public String askForDirectory() {
-		String folderx = askForNewFolderName("H:/_LAN_JPG/testjava/");
+		//String folderx = askForNewFolderName("H:/_LAN_JPG/testjava/");
+		String folderx = askForNewFolderName(defaultFolder);
 		File folder = new File(folderx);
 		if (!folder.exists()) {
 			folder.mkdir();
-			System.out.println("mon rï¿½pertoire=" + folder);
+			System.out.println("folder=" + folder);
 		}
 		return folderx;
 	}
 
 	public String askForFileName(String folder) {
-		String myFileName = askForNewFileName("outfile.txt");
+		//String myFileName = askForNewFileName("outfile.txt");
+		String myFileName = askForNewFileName(defaultOutputFileName);
 		File fileName = new File(folder + myFileName);
-		System.out.println("mon fichier=" + fileName.toString());
+		System.out.println("filename=" + fileName.toString());
 		//if (!fileName.exists()) {
 		//	try {
 		//		fileName.createNewFile();
@@ -411,14 +429,14 @@ public class GamesApplication {
 	}
 	
 	public String askForNewFolderName(String folderx) {
-		System.out.println("Le rï¿½pertoire par dï¿½faut sera: " + folderx);
-		String newFolderx = myInputText("pour changer, introduisez le nouveau; sinon, faites Enter");
+		System.out.println("The default folder is : " + folderx);
+		String newFolderx = myInputText("To change it, enter the new one, otherwise do Enter");
 		return (newFolderx.isEmpty() ? folderx : newFolderx);
 	}
 	
 	public String askForNewFileName(String filex) {
-		System.out.println("Le nom de fichier par dï¿½faut sera: " + filex);
-		String newFilex = myInputText("pour changer, introduisez le nouveau; sinon, faites Enter");
+		System.out.println("The default filename is: " + filex);
+		String newFilex = myInputText("to change it, enter the new one; otherwise do Enter");
 		return (newFilex.isEmpty() ? filex : newFilex);
 	}
 	
@@ -525,4 +543,18 @@ public class GamesApplication {
 		return myInput;
 	}
 
+	public Properties loadPropertiesFile(String filePath) {
+
+        Properties prop = new Properties();
+
+        try (InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(filePath)) {
+            prop.load(resourceAsStream);
+        } catch (IOException e) {
+            System.err.println("Unable to load properties file : " + filePath);
+        }
+
+        return prop;
+
+    }
+	
 }

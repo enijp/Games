@@ -1,0 +1,15 @@
+2020-05-06 16:26:15,132 [main] INFO  be.belfius.games.GamesApplication - GamesApplication starts!
+2020-05-06 16:26:15,147 [main] TRACE be.belfius.games.GamesApplication - reading properties
+2020-05-06 16:26:15,222 [main] TRACE be.belfius.games.GamesApplication - default folder=R:/java-jp/dev/
+2020-05-06 16:26:15,224 [main] TRACE be.belfius.games.GamesApplication - default output filename=outfile.txt
+2020-05-06 16:26:15,610 [main] TRACE be.belfius.games.GamesApplication - hashmap mapCategory loaded
+2020-05-06 16:26:15,614 [main] TRACE be.belfius.games.GamesApplication - hashmap mapDifficulty loaded
+2020-05-06 16:26:29,461 [main] ERROR be.belfius.games.GamesApplication - Your choice 'ss' is invalid
+2020-05-06 16:29:29,177 [main] INFO  be.belfius.games.GamesApplication - GamesApplication starts!
+2020-05-06 16:29:29,192 [main] TRACE be.belfius.games.GamesApplication - reading properties
+2020-05-06 16:29:29,268 [main] INFO  be.belfius.games.GamesApplication - running with properties for <dev> environment
+2020-05-06 16:29:29,269 [main] TRACE be.belfius.games.GamesApplication - default folder=R:/java-jp/dev/
+2020-05-06 16:29:29,270 [main] TRACE be.belfius.games.GamesApplication - default output filename=outfile.txt
+2020-05-06 16:29:29,656 [main] TRACE be.belfius.games.GamesApplication - hashmap mapCategory loaded
+2020-05-06 16:29:29,698 [main] TRACE be.belfius.games.GamesApplication - hashmap mapDifficulty loaded
+2020-05-06 16:29:33,035 [main] ERROR be.belfius.games.GamesApplication - Your choice 'ff' is invalid

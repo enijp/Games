@@ -6,7 +6,8 @@
     </appender>
 
     <appender name="toAFile" class="ch.qos.logback.core.FileAppender">
-        <file>logfiles/logfile.log</file>
+<!--         <file>logfiles/logfile.log</file> -->
+         <file>logfiles/${log.file.location}</file>
         <append>true</append>
         <encoder>
                  <pattern>%date [%thread] %-5level %logger{36} - %msg%n</pattern>

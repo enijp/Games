@@ -1,0 +1,8 @@
+2020-05-06 16:30:22,916 [main] INFO  be.belfius.games.GamesApplication - GamesApplication starts!
+2020-05-06 16:30:22,931 [main] TRACE be.belfius.games.GamesApplication - reading properties
+2020-05-06 16:30:23,008 [main] INFO  be.belfius.games.GamesApplication - running with properties for <prd> environment
+2020-05-06 16:30:23,010 [main] TRACE be.belfius.games.GamesApplication - default folder=R:/java-jp/dev/
+2020-05-06 16:30:23,012 [main] TRACE be.belfius.games.GamesApplication - default output filename=outfile.txt
+2020-05-06 16:30:23,401 [main] TRACE be.belfius.games.GamesApplication - hashmap mapCategory loaded
+2020-05-06 16:30:23,405 [main] TRACE be.belfius.games.GamesApplication - hashmap mapDifficulty loaded
+2020-05-06 16:30:26,123 [main] ERROR be.belfius.games.GamesApplication - Your choice 'rr' is invalid

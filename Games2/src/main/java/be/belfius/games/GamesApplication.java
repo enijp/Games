@@ -6,7 +6,6 @@ import java.io.InputStream;
 
 //import org.apache.logging.log4j.core.Logger;
 
-import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,58 +22,59 @@ import org.slf4j.Logger;
 import be.belfius.games.exceptions.inputNumericException;
 import be.belfius.games.exceptions.inputStringException;
 import be.belfius.games.services.GamesServices;
+import be.belfius.games.services.Helper;
 
 public class GamesApplication {
 
 	static Logger logger = LoggerFactory.getLogger(GamesApplication.class);
 
-	
 	private Scanner scanner = new Scanner(System.in);
 	private GamesServices gamesServices = new GamesServices();
+	private static HashMap<Integer, String> mapCategory;
+	private static HashMap<Integer, String> mapDifficulty;
 	
-	private static String defaultFolder = "";
-	private static String defaultOutputFileName = "";
+	static String defaultFolder = "";
+	static String defaultOutputFileName = "";
 
 	public static void main(String[] args) {
 		GamesApplication myApp = new GamesApplication();
-		System.setProperty("org.slf4j.simpleLogger.showDateTime", "true");  //Use this setting to show the date and time
-        System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "yyyy-MM-dd HH:mm:ss"); //Use this setting to format te date and time
-		
-        logger.info("GamesApplication starts!");
-		   
-      //read properties
-        logger.trace("reading properties");
-      		Properties prop = myApp.loadPropertiesFile("config.properties");
-              prop.forEach((k, v) -> System.out.println("key=" + k + " ; value=" + v));
+		System.setProperty("org.slf4j.simpleLogger.showDateTime", "true"); // Use this setting to show the date and time
+		System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "yyyy-MM-dd HH:mm:ss"); // Use this setting to
+																							// format te date and time
 
-             System.out.println("default directory=" + prop.get("fi.defaultOutputFolder"));
-             System.out.println("default output filename=" + prop.get("fi.defaultOutputFileName"));
-      		
-             logger.info("running with properties for <" + prop.get("exec.env")+ "> environment");
-             
+		logger.info("GamesApplication starts!");
+
+		// read properties
+		logger.trace("reading properties");
+		Properties prop = Helper.loadPropertiesFile();
+		prop.forEach((k, v) -> System.out.println("key=" + k + " ; value=" + v));
+
+		System.out.println("default directory=" + prop.get("fi.defaultOutputFolder"));
+		System.out.println("default output filename=" + prop.get("fi.defaultOutputFileName"));
+
+		logger.info("running with properties for <" + prop.get("exec.env") + "> environment");
+
 		defaultFolder = prop.get("fi.defaultOutputFolder").toString();
 		defaultOutputFileName = prop.get("fi.defaultOutputFileName").toString();
-		logger.trace("default folder="+defaultFolder );
-		logger.trace("default output filename="+defaultOutputFileName );
-        
-		String url = "jdbc:mysql://localhost:3306/games";
-		String login = "root";
-		String password = "";
-		String driver = "com.mysql.jdbc.Driver";
+		logger.trace("default folder=" + defaultFolder);
+		logger.trace("default output filename=" + defaultOutputFileName);
 
-		Connection myCon = myApp.connectToGamesDB(url, login, password, driver);
+		//String url = "jdbc:mysql://localhost:3306/games";
+		//String login = "root";
+		//String password = "";
+		//String driver = "com.mysql.jdbc.Driver";
+		//Connection myCon = myApp.connectToGamesDB(url, login, password, driver);
 
 		// fill the map with category table
-		HashMap<Integer, String> mapCategory = myApp.fillCategoryMap(myCon);
+		mapCategory = myApp.fillCategoryMap();
 		logger.trace("hashmap mapCategory loaded");
-		mapCategory.forEach((k,v) -> System.out.println("Key = " + k + ", Value = " + v));
-		
+		mapCategory.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
+
 		// fill the map with difficulty table
-		HashMap<Integer, String> mapDifficulty = myApp.fillDifficultyMap(myCon);
+		mapDifficulty = myApp.fillDifficultyMap();
 		logger.trace("hashmap mapDifficulty loaded");
-		mapDifficulty.forEach((k,v) -> System.out.println("Key = " + k + ", Value = " + v));
-		
-				
+		mapDifficulty.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
+		System.out.println("");
 		
 		boolean loop = true;
 		while (loop) {
@@ -84,32 +84,32 @@ public class GamesApplication {
 			switch (choice) {
 			case "1":
 				try {
-					myApp.showOneCategoryDetails(myApp.askForCategoryId(), myCon);
+					myApp.showOneCategoryDetails(myApp.askForCategoryId());
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
-						}
+				}
 				break;
 			case "2":
 				try {
-					myApp.showOneGameDetails(myApp.askForGameId(), myCon);
+					myApp.showOneGameDetails(myApp.askForGameId());
 				} catch (Exception e) {
-					//e.printStackTrace();
+					// e.printStackTrace();
 					System.out.println(e.getMessage());
 				}
 
 				break;
 			case "3":
 				try {
-					myApp.showOneBorrowerDetails(myApp.askForBorrowerId(), myCon);
+					myApp.showOneBorrowerDetails(myApp.askForBorrowerId());
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
-					//e.printStackTrace();
+					// e.printStackTrace();
 				}
 
 				break;
 			case "4":
 				try {
-					myApp.showGameSelectedByName(myApp.askForGameName(), myCon);
+					myApp.showGameSelectedByName(myApp.askForGameName());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -118,19 +118,18 @@ public class GamesApplication {
 			case "5":
 				// d'abord via le tri SQL
 				System.out.println("1) sorted via SQL");
-				myApp.showAllGamesSortedViaSql(myCon);
-				// ensuite via le tri sur les games de la classe Game
+				myApp.showAllGamesSortedViaSql();
+				// ensuite via le tri sur les games de la class Game
 				System.out.println("2) sorted via internal sort");
-				myApp.showAllGamesSortedViaInternal(myCon);
+				myApp.showAllGamesSortedViaInternal();
 				break;
 			case "6":
 				// list of all games with category
 				System.out.println("All games List");
 				System.out.println("--------------");
-				myApp.showAllGamesWithCategory(myCon, mapCategory);
-				// ask to the user to input a game name to print all this game's details
+				myApp.showAllGamesWithCategory(mapCategory);
 				try {
-					myApp.showAllDetailsGameSelectedByName(myApp.askForGameName(), myCon, mapCategory, mapDifficulty);
+					myApp.showAllDetailsGameSelectedByName(myApp.askForGameName(), mapCategory, mapDifficulty);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -144,17 +143,17 @@ public class GamesApplication {
 					case "1":// liste de tous les borrowed games
 						System.out.println("All Borrowed Games");
 						System.out.println("------------------");
-						myApp.showAllBorrowedGamesSortedViaSql(myCon);
+						myApp.showAllBorrowedGamesSortedViaSql();
 						break;
 					case "2":// liste de tous les borrowers
 						System.out.println("List of all Borrowers");
 						System.out.println("---------------------");
-						myApp.showAllBorrowersSortedViaSql(myCon);
+						myApp.showAllBorrowersSortedViaSql();
 						break;
 					case "3":// introduire le borrower name et donner la liste des
 						// games borrowed pour ce borrower name
 						try {
-							myApp.showAllDetailsBorrowerSelectedByName(myApp.askForBorrowerName(), myCon);
+							myApp.showAllDetailsBorrowerSelectedByName(myApp.askForBorrowerName());
 						} catch (inputStringException e) {
 							// nothing to do, just return to the borrower menu
 							// e.pprintStackTrace();
@@ -179,20 +178,20 @@ public class GamesApplication {
 				// en then the user enter the level that he wants to show the games
 				try {
 					// myApp.askForDifficultyLevel(mapDifficulty);
-					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty), myCon,
+					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty), 
 							mapCategory, mapDifficulty);
 				} catch (inputStringException e) {
 					// e1.printStackTrace();
 					System.out.println(e.getMessage());
 
 				}
-				
+
 				break;
 			case "9":
 				// introduire le borrower name et donner la liste des
 				// games borrowed pour ce borrower name
 				try {
-					myApp.showListOfBorrowerSelectedByName(myApp.askForBorrowerName(), myCon);
+					myApp.showListOfBorrowerSelectedByName(myApp.askForBorrowerName());
 				} catch (inputStringException e) {
 					// nothing to do, just return to the borrower menu
 					// e.pprintStackTrace();
@@ -209,21 +208,24 @@ public class GamesApplication {
 				if (endDate == null)
 					break;
 
-				//System.out.println("dates are ok");
-				//select borrowed games between these 2 dates
-				myApp.showBorrowedGamesBetween2Dates(myCon, startDate, endDate);
+				// System.out.println("dates are ok");
+				// select borrowed games between these 2 dates
+				myApp.showBorrowedGamesBetween2Dates(startDate, endDate);
 
 				break;
-			case "11"://écrire la liste des games dans un fchier
+			case "11":// écrire la liste des games dans un fichier
 				try {
-					myApp.writeGameDataSelectedByNameToFile(myApp.askForGameName(), myCon, mapCategory, mapDifficulty);
+					myApp.writeGameDataSelectedByNameToFile(myApp.askForGameName(), mapCategory, mapDifficulty);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				break;
+			case "12"://new game category
+			myApp.insertNewLevelDifficulty();
+			break;
 			case "X":
 			case "x":
-				myApp.closeGamesDB(myCon);
+				//myApp.closeGamesDB(myCon);
 
 				System.out.println("bye bye...");
 				loop = false;
@@ -250,8 +252,8 @@ public class GamesApplication {
 				" 4. Show a game of your choice", " 5. Show all Games", " 6. Show a list of Games and Choose a Game",
 				" 7. Show borrowed games", " 8. Advanced search: difficulty", " 9. Complex search : borrowers",
 				"10. List of borrowed games between 2 dates", 
-				"11. Write a game list of you choice to a .csv file",
-				" ", 
+				"11. Write a game list of you choice to a file (csv formatted)", 
+				"12. Insert a new Difficulty Level", " ",
 				"X. Quit the Games Application", " " };
 		System.out.println("           Games Application    (by J-Ph. Genicot)");
 		System.out.println("           -----------------" + "\n");
@@ -272,18 +274,18 @@ public class GamesApplication {
 		}
 	}
 
-	private void closeGamesDB(Connection myCon) {
-		gamesServices.closeGamesDB(myCon);
-	}
-
-	Connection connectToGamesDB(String url, String login, String password, String driver) {
-		try {
-			return gamesServices.connectToGamesDB(url, login, password, driver);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+//	private void closeGamesDB(Connection myCon) {
+//		gamesServices.closeGamesDB(myCon);
+//	}
+//
+//	Connection connectToGamesDB(String url, String login, String password, String driver) {
+//		try {
+//			return gamesServices.connectToGamesDB(url, login, password, driver);
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//		return null;
+//	}
 
 	public int askForCategoryId() throws inputNumericException {
 		int myReturnInt = 0;
@@ -364,46 +366,46 @@ public class GamesApplication {
 
 	}
 
-	public void showOneCategoryDetails(int id, Connection connection) {
-		gamesServices.showOneCategoryDetails(id, connection);
+	public void showOneCategoryDetails(int id) {
+		gamesServices.showOneCategoryDetails(id);
 	}
 
-	public void showOneGameDetails(int id, Connection connection) {
-		gamesServices.showOneGameDetails(id, connection);
+	public void showOneGameDetails(int id) {
+		gamesServices.showOneGameDetails(id);
 	}
 
-	public void showOneBorrowerDetails(int id, Connection connection) {
-		gamesServices.showOneBorrowerDetails(id, connection);
+	public void showOneBorrowerDetails(int id) {
+		gamesServices.showOneBorrowerDetails(id);
 	}
 
-	public void showGameSelectedByName(String gameName, Connection connection) {
-		gamesServices.showGameSelectedByName(gameName, connection);
+	public void showGameSelectedByName(String gameName) {
+		gamesServices.showGameSelectedByName(gameName);
 	}
 
-	public void showAllGamesSortedViaSql(Connection connection) {
-		gamesServices.showAllGamesSortedViaSql(connection);
+	public void showAllGamesSortedViaSql() {
+		gamesServices.showAllGamesSortedViaSql();
 	}
 
-	public void showAllGamesSortedViaInternal(Connection connection) {
-		gamesServices.showAllGamesSortedViaInternal(connection);
+	public void showAllGamesSortedViaInternal() {
+		gamesServices.showAllGamesSortedViaInternal();
 	}
 
-	public void showAllDetailsGameSelectedByName(String gameName, Connection connection,
+	public void showAllDetailsGameSelectedByName(String gameName, 
 			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
-		gamesServices.showAllDetailsGameSelectedByName(gameName, connection, mapCategory, mapDifficulty);
+		gamesServices.showAllDetailsGameSelectedByName(gameName, mapCategory, mapDifficulty);
 	}
 
-	public void writeGameDataSelectedByNameToFile(String gameName, Connection connection,
+	public void writeGameDataSelectedByNameToFile(String gameName, 
 			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
-		
+
 		String myFolder = askForDirectory();
 		String myFileName = askForFileName(myFolder);
-		gamesServices.writeGameDataSelectedByNameToFile(gameName, connection, myFileName);
-		
+		gamesServices.writeGameDataSelectedByNameToFile(gameName, myFileName);
+
 	}
-	
+
 	public String askForDirectory() {
-		//String folderx = askForNewFolderName("H:/_LAN_JPG/testjava/");
+		// String folderx = askForNewFolderName("H:/_LAN_JPG/testjava/");
 		String folderx = askForNewFolderName(defaultFolder);
 		File folder = new File(folderx);
 		if (!folder.exists()) {
@@ -414,79 +416,84 @@ public class GamesApplication {
 	}
 
 	public String askForFileName(String folder) {
-		//String myFileName = askForNewFileName("outfile.txt");
+		// String myFileName = askForNewFileName("outfile.txt");
 		String myFileName = askForNewFileName(defaultOutputFileName);
 		File fileName = new File(folder + myFileName);
 		System.out.println("filename=" + fileName.toString());
-		//if (!fileName.exists()) {
-		//	try {
-		//		fileName.createNewFile();
-		//	} catch (IOException e) {
-		//		e.printStackTrace();
-		//	}
-		//			}
+		// if (!fileName.exists()) {
+		// try {
+		// fileName.createNewFile();
+		// } catch (IOException e) {
+		// e.printStackTrace();
+		// }
+		// }
 		return fileName.toString();
 	}
-	
+
 	public String askForNewFolderName(String folderx) {
 		System.out.println("The default folder is : " + folderx);
 		String newFolderx = myInputText("To change it, enter the new one, otherwise do Enter");
 		return (newFolderx.isEmpty() ? folderx : newFolderx);
 	}
-	
+
 	public String askForNewFileName(String filex) {
 		System.out.println("The default filename is: " + filex);
 		String newFilex = myInputText("to change it, enter the new one; otherwise do Enter");
 		return (newFilex.isEmpty() ? filex : newFilex);
 	}
+
+	private HashMap<Integer, String> fillDifficultyMap() {
+		return gamesServices.fillDifficultyMap();
+	}
+
+	private HashMap<Integer, String> fillCategoryMap() {
+		return gamesServices.fillCategoryMap();
+
+	}
+
+	void insertNewLevelDifficulty() {
+		gamesServices.insertNewLevelDifficulty();
+		mapDifficulty = fillDifficultyMap();
+		logger.trace("hashmap mapDifficuty RE-loaded");
+		mapDifficulty.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
+	}
 	
 	
-	
-	private HashMap<Integer, String> fillDifficultyMap(Connection myCon) {
-		return gamesServices.fillDifficultyMap(myCon);
-	}
-
-	private HashMap<Integer, String> fillCategoryMap(Connection myCon) {
-		return gamesServices.fillCategoryMap(myCon);
+	private void showAllGamesWithCategory(HashMap<Integer, String> mapCategory) {
+		gamesServices.showAllGamesWithCategory(mapCategory);
 
 	}
 
-	private void showAllGamesWithCategory(Connection myCon, HashMap<Integer, String> mapCategory) {
-		gamesServices.showAllGamesWithCategory(myCon, mapCategory);
-
+	public void showAllBorrowedGamesSortedViaSql() {
+		gamesServices.showAllBorrowedGamesSortedViaSql();
 	}
 
-	public void showAllBorrowedGamesSortedViaSql(Connection connection) {
-		gamesServices.showAllBorrowedGamesSortedViaSql(connection);
+	public void showBorrowedGamesBetween2Dates(Date startDate, Date endDate) {
+		gamesServices.showBorrowedGamesBetween2Dates(startDate, endDate);
 	}
 
-	public void showBorrowedGamesBetween2Dates(Connection myCon, Date startDate, Date endDate) {
-		gamesServices.showBorrowedGamesBetween2Dates(myCon, startDate, endDate);
-	}
-		
-	public void showAllBorrowersSortedViaSql(Connection connection) {
-		gamesServices.showAllBorrowersSortedViaSql(connection);
+	public void showAllBorrowersSortedViaSql() {
+		gamesServices.showAllBorrowersSortedViaSql();
 	}
 
-	public void showAllDetailsBorrowerSelectedByName(String borrowerName, Connection connection) {
-		gamesServices.showAllDetailsBorrowerSelectedByName(borrowerName, connection);
+	public void showAllDetailsBorrowerSelectedByName(String borrowerName) {
+		gamesServices.showAllDetailsBorrowerSelectedByName(borrowerName);
 	}
 
-	public void showListOfBorrowerSelectedByName(String borrowerName, Connection connection) {
-		gamesServices.showListOfBorrowerSelectedByName(borrowerName, connection);
+	public void showListOfBorrowerSelectedByName(String borrowerName) {
+		gamesServices.showListOfBorrowerSelectedByName(borrowerName);
 	}
 
 	public void showDifficultyLevels(HashMap<Integer, String> mapDifficulty) {
-		//for (Map.Entry mapentry : mapDifficulty.entrySet()) {
-		//	System.out.println(mapentry.getKey() + " : " + mapentry.getValue());
-		//}
-		mapDifficulty.forEach( (k, v) -> System.out.println(k + " : " + v));
+		// for (Map.Entry mapentry : mapDifficulty.entrySet()) {
+		// System.out.println(mapentry.getKey() + " : " + mapentry.getValue());
+		// }
+		mapDifficulty.forEach((k, v) -> System.out.println(k + " : " + v));
 
 	}
 
-	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, Connection myCon,
-			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
-		gamesServices.showAllGamesWithSelectedDifficultyLevel(difficultyId, myCon, mapCategory, mapDifficulty);
+	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
+		gamesServices.showAllGamesWithSelectedDifficultyLevel(difficultyId, mapCategory, mapDifficulty);
 
 	}
 
@@ -496,7 +503,7 @@ public class GamesApplication {
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		Date mydate = null;
 		if (isDateValid(myDateString, "dd-MM-yyyy")) {
-			//System.out.println("date ok");
+			// System.out.println("date ok");
 			try {
 				mydate = df.parse(myDateString);
 			} catch (ParseException e) {
@@ -519,6 +526,8 @@ public class GamesApplication {
 		return false;
 	}
 
+	
+	
 	// *******************************************************
 	public String myInputText(String textToDisplay) {
 		scanner = new Scanner(System.in);
@@ -545,16 +554,16 @@ public class GamesApplication {
 
 	public Properties loadPropertiesFile(String filePath) {
 
-        Properties prop = new Properties();
+		Properties prop = new Properties();
 
-        try (InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(filePath)) {
-            prop.load(resourceAsStream);
-        } catch (IOException e) {
-            System.err.println("Unable to load properties file : " + filePath);
-        }
+		try (InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(filePath)) {
+			prop.load(resourceAsStream);
+		} catch (IOException e) {
+			System.err.println("Unable to load properties file : " + filePath);
+		}
 
-        return prop;
+		return prop;
 
-    }
-	
+	}
+
 }

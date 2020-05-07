@@ -24,7 +24,7 @@ public class Game {
 	}
 
 	public Game(int id, String game_name, String editor, String author, int year_edition, String age, int min_players,
-			int max_players, int category_id, String play_duration, int difficulty_id, float price) {
+			int max_players, int category_id, String play_duration, int difficulty_id, float price, String image) {
 		super();
 		Id = id;
 		this.game_name = game_name;
@@ -147,17 +147,17 @@ public class Game {
 				+ "\n\t" + "year_edition=" + year_edition + ", age=" + age + 
 						", min_players=" + min_players + ", max_players=" + max_players 
 				+"\n\t"	+ "category_id=" + category_id + ", play_duration=" + play_duration + ", difficulty_id="
-				+ difficulty_id + ", price=" + price + ", image=" + image +"]";
+				+ difficulty_id + ", price=" + price + ", image=" + image ;
 	}
 
 	public String toStringLight() {
 		return "game_name=" + game_name + "\t" + "editor=" + editor   
-				+ "\t" + "age=" + age + "\t" +"price=" + price + "]";
+				+ "\t" + "age=" + age + "\t" +"price=" + price ;
 		}
 
 	public String toStringLight2() {
 		return "game_name=" + game_name + "\t" + "editor=" + editor   
-				+  "\t" +"price=" + price + "]";
+				+  "\t" +"price=" + price ;
 		}
 
 	

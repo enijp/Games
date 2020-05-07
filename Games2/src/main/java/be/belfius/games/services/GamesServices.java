@@ -1,15 +1,12 @@
 package be.belfius.games.services;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,17 +18,17 @@ public class GamesServices {
 
 	private GamesRepository gamesRepository = new GamesRepository();
 
-	public Connection connectToGamesDB(String url, String login, String password, String driver)
-			throws ClassNotFoundException {
-		return gamesRepository.connectToGamesDB(url, login, password, driver);
-	}
+//	public Connection connectToGamesDB(String url, String login, String password, String driver)
+//			throws ClassNotFoundException {
+//		return gamesRepository.connectToGamesDB(url, login, password, driver);
+//	}
+//
+//	public void closeGamesDB(Connection connection) {
+//		gamesRepository.closeGamesDB(connection);
+//	}
 
-	public void closeGamesDB(Connection connection) {
-		gamesRepository.closeGamesDB(connection);
-	}
-
-	public void showOneCategoryDetails(int id, Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectOneCategoryById(id, connection);
+	public void showOneCategoryDetails(int id) {
+		ResultSet myResultSet = gamesRepository.selectOneCategoryById(id);
 		try {
 			if (myResultSet.next()) {
 				// System.out.println(myResultSet);
@@ -48,8 +45,8 @@ public class GamesServices {
 
 	}
 
-	public void showOneBorrowerDetails(int id, Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectOneBorrowerById(id, connection);
+	public void showOneBorrowerDetails(int id) {
+		ResultSet myResultSet = gamesRepository.selectOneBorrowerById(id);
 		try {
 			if (myResultSet.next()) {
 				// System.out.println(myResultSet);
@@ -66,9 +63,9 @@ public class GamesServices {
 
 	}
 
-	public void showAllDetailsGameSelectedByName(String gameName, Connection connection,
-			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
-		ResultSet myResultSet = gamesRepository.selectGameByName(gameName, connection);
+	public void showAllDetailsGameSelectedByName(String gameName, HashMap<Integer, String> mapCategory,
+			HashMap<Integer, String> mapDifficulty) {
+		ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
 		List<Game> myList = makeGameList(myResultSet);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game is correponding to the game name you entered");
@@ -100,25 +97,24 @@ public class GamesServices {
 		System.out.println("-----------------------------");
 	}
 
-	public void writeGameDataSelectedByNameToFile(String gameName, Connection connection, String myFileName) {
-		ResultSet myResultSet = gamesRepository.selectGameByName(gameName, connection);
+	public void writeGameDataSelectedByNameToFile(String gameName, String myFileName) {
+		ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
 		List<Game> myList = makeGameList(myResultSet);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game is correponding to your selection");
 		} else {
 			gamesRepository.WriteSelectGamesToFile(myList, myFileName);
+		}
 	}
-	}
-	
-	
-	public void showGameSelectedByName(String gameName, Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectGameByName(gameName, connection);
+
+	public void showGameSelectedByName(String gameName) {
+		ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
 		List<Game> myList = makeGameList(myResultSet);
 		displayGameListDetails(myList, "light");
 	}
 
-	public void showOneGameDetails(int id, Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectOneGameById(id, connection);
+	public void showOneGameDetails(int id) {
+		ResultSet myResultSet = gamesRepository.selectOneGameById(id);
 		List<Game> myList = makeGameList(myResultSet);
 		displayGameListDetails(myList);
 	}
@@ -190,23 +186,23 @@ public class GamesServices {
 		return myGameList;
 	}
 
-	public void showAllGamesSortedViaSql(Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot(connection, "order by game_name");
+	public void showAllGamesSortedViaSql() {
+		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot("order by game_name");
 		List<Game> myList = makeGameList(myResultSet);
 		displayGameListDetails(myList, "light2");
 
 	}
 
-	public void showAllGamesSortedViaInternal(Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot(connection);
+	public void showAllGamesSortedViaInternal() {
+		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot();
 		List<Game> myList = makeGameList(myResultSet);
 		List<Game> mySortedList = sortGamesList(myList, "byName");
 		displayGameListDetails(mySortedList, "light2");
 
 	}
 
-	public void showAllGamesWithCategory(Connection myCon, HashMap<Integer, String> mapCategory) {
-		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot(myCon);
+	public void showAllGamesWithCategory(HashMap<Integer, String> mapCategory) {
+		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot();
 		List<Game> myList = makeGameList(myResultSet);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game exists");
@@ -217,9 +213,9 @@ public class GamesServices {
 		}
 	}
 
-	public HashMap<Integer, String> fillDifficultyMap(Connection myCon) {
+	public HashMap<Integer, String> fillDifficultyMap() {
 		HashMap<Integer, String> mapDifficulty = new HashMap<Integer, String>();
-		ResultSet myResultSet = gamesRepository.selectAllDifficulty(myCon);
+		ResultSet myResultSet = gamesRepository.selectAllDifficulty();
 		try {
 			while (myResultSet.next()) {
 				mapDifficulty.put(myResultSet.getInt("id"), myResultSet.getString("difficulty_name"));
@@ -232,9 +228,10 @@ public class GamesServices {
 		return mapDifficulty;
 	}
 
-	public HashMap<Integer, String> fillCategoryMap(Connection myCon) {
+	public HashMap<Integer, String> fillCategoryMap() {
 		HashMap<Integer, String> mapCategory = new HashMap<Integer, String>();
-		ResultSet myResultSet = gamesRepository.selectAllCategory(myCon);
+
+		ResultSet myResultSet = gamesRepository.selectAllCategory();
 		try {
 			while (myResultSet.next()) {
 				mapCategory.put(myResultSet.getInt("id"), myResultSet.getString("category_name"));
@@ -247,19 +244,18 @@ public class GamesServices {
 
 	}
 
-	public void showAllBorrowedGamesSortedViaSql(Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectAllBorrowedGamesSortedOrNot(connection,
-				"order by borrower_name asc, borrow_date asc");
+	public void showAllBorrowedGamesSortedViaSql() {
+		ResultSet myResultSet = gamesRepository
+				.selectAllBorrowedGamesSortedOrNot("order by borrower_name asc, borrow_date asc");
 		try {
-			boolean firstTimeLoop = true;
+			if (myResultSet.next()) {
+				System.out.printf("%-50s  %-40s  %-12s  %-12s\n", "Game", "Borrower name", "Borrow date",
+						"Return date");
+				System.out.printf("%-50s  %-40s  %-16s  %-16s\n", "------------------------------",
+						"-----------------------", "-----------", "-----------");
+				myResultSet.beforeFirst();
+			}
 			while (myResultSet.next()) {
-				if (firstTimeLoop) {
-					firstTimeLoop = false;
-					System.out.printf("%-50s  %-40s  %-12s  %-12s\n", "Game", "Borrower name", "Borrow date",
-							"Return date");
-					System.out.printf("%-50s  %-40s  %-16s  %-16s\n", "------------------------------",
-							"-----------------------", "-----------", "-----------");
-				}
 				// si date return est vide, indiquer "not yet returned"
 				String myReturnDatex = "";
 				String myBorrowDatex = "";
@@ -286,18 +282,16 @@ public class GamesServices {
 		}
 	}
 
-	public void showAllBorrowersSortedViaSql(Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectAllBorrowersSortedOrNot(connection,
-				"order by borrower_name asc, city asc");
+	public void showAllBorrowersSortedViaSql() {
+		ResultSet myResultSet = gamesRepository.selectAllBorrowersSortedOrNot("order by borrower_name asc, city asc");
 		try {
-			boolean firstTimeLoop = true;
+			if (myResultSet.next()) {
+				System.out.printf("%-40s  %-30s  %-40s\n", "Borrower name", "City", "email");
+				System.out.printf("%-40s  %-30s  %-40s\n", "------------------------------", "-----------------------",
+						"---------------------------");
+				myResultSet.beforeFirst();
+			}
 			while (myResultSet.next()) {
-				if (firstTimeLoop) {
-					firstTimeLoop = false;
-					System.out.printf("%-40s  %-30s  %-40s\n", "Borrower name", "City", "email");
-					System.out.printf("%-40s  %-30s  %-40s\n", "------------------------------",
-							"-----------------------", "---------------------------");
-				}
 				System.out.printf("%-40s  %-30s  %-40s\n", myResultSet.getString("borrower_name"),
 						myResultSet.getString("city"), myResultSet.getString("email"));
 			}
@@ -308,7 +302,7 @@ public class GamesServices {
 		}
 	}
 
-	public void showBorrowedGamesBetween2Dates(Connection myCon, Date startDate, Date endDate) {
+	public void showBorrowedGamesBetween2Dates(Date startDate, Date endDate) {
 		String sortClause = "ORDER BY game_name asc";
 		SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String start = myDateFormat.format(startDate);
@@ -316,55 +310,38 @@ public class GamesServices {
 		String whereClause = "AND (borrow_date BETWEEN '" + start + "'" + " AND '" + end + "')";
 
 		// System.out.println("where clause=" + whereClause);
-		ResultSet myResultSet = gamesRepository.selectBorrowedGames(myCon, sortClause, whereClause);
-		boolean firstTimeLoop = true;
-		boolean isEmptyResult = true;
+		ResultSet myResultSet = gamesRepository.selectBorrowedGames(sortClause, whereClause);
 		try {
-			while (myResultSet.next()) {
-				isEmptyResult = false;
-				if (firstTimeLoop) {
-					firstTimeLoop = false;
-					System.out.printf("%-50s  %-40s  %-12s      %-12s\n", "Game", "Borrower name", "Borrow date",
-							"Return date");
-					System.out.printf("%-50s  %-40s  %-16s  %-16s\n", "------------------------------",
-							"-----------------------", "-----------", "-----------");
+			if (myResultSet.next()) {
+				System.out.printf("%-50s  %-40s  %-12s      %-12s\n", "Game", "Borrower name", "Borrow date",
+						"Return date");
+				System.out.printf("%-50s  %-40s  %-16s  %-16s\n", "------------------------------",
+						"-----------------------", "-----------", "-----------");
+				myResultSet.beforeFirst();
+
+				while (myResultSet.next()) {
+
+					String myReturnDatex = (myResultSet.getDate("return_date") == null ? "not yet returned"
+							: myResultSet.getDate("return_date").toString());
+
+					String myBorrowDatex = (myResultSet.getDate("borrow_date") == null ? "not yet borrowed"
+							: myResultSet.getDate("borrow_date").toString());
+					System.out.printf("%-50s  %-40s  %-16s  %-16s\n", myResultSet.getString("game_name"),
+							myResultSet.getString("borrower_name"), myBorrowDatex, myReturnDatex);
 				}
-				// si date return est vide, indiquer "not yet returned"
-				//String myReturnDatex = "";
-				//String myBorrowDatex = "";
-				// System.out.println("return date="+myResultSet.getDate("return_date"));
-				//if (myResultSet.getDate("return_date") == null) {
-				//	myReturnDatex = "not yet returned";
-				//} else {
-				//	Date myReturnDate = myResultSet.getDate("return_date");
-				//	myReturnDatex = myReturnDate.toString();
-				//}
-				String myReturnDatex = (myResultSet.getDate("return_date") == null 
-						? "not yet returned" : myResultSet.getDate("return_date").toString());
-				//if (myResultSet.getDate("borrow_date") == null) {
-				//	myBorrowDatex = "not yet borrowed";
-				//} else {
-				//	Date myReturnDate = myResultSet.getDate("borrow_date");
-				//	myBorrowDatex = myReturnDate.toString();
-				//}
-				String myBorrowDatex = (myResultSet.getDate("borrow_date") == null 
-						? "not yet borrowed" : myResultSet.getDate("borrow_date").toString());
-				System.out.printf("%-50s  %-40s  %-16s  %-16s\n", myResultSet.getString("game_name"),
-						myResultSet.getString("borrower_name"), myBorrowDatex, myReturnDatex);
+			} else {
+				System.out.println("Sorry, no borrowed game during this period");
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (isEmptyResult) {
-			System.out.println("Sorry, no borrowed game during this period");
-		}
 
 	}
 
-	public void showAllDetailsBorrowerSelectedByName(String borrowerName, Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectBorrowerByName(borrowerName, connection);
+	public void showAllDetailsBorrowerSelectedByName(String borrowerName) {
+		ResultSet myResultSet = gamesRepository.selectBorrowerByName(borrowerName);
 		List<Borrower> myList = makeBorrowerList(myResultSet);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no borrower is correponding to the name you entered");
@@ -378,8 +355,8 @@ public class GamesServices {
 
 	}
 
-	public void showListOfBorrowerSelectedByName(String borrowerName, Connection connection) {
-		ResultSet myResultSet = gamesRepository.selectBorrowerByName(borrowerName, connection);
+	public void showListOfBorrowerSelectedByName(String borrowerName) {
+		ResultSet myResultSet = gamesRepository.selectBorrowerByName(borrowerName);
 		List<Borrower> myList = makeBorrowerList(myResultSet);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no borrower is correponding to the name you entered");
@@ -433,9 +410,9 @@ public class GamesServices {
 		return myBorrowerList;
 	}
 
-	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, Connection connection,
-			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
-		ResultSet myResultSet = gamesRepository.selectGamesByDifficultyId(difficultyId, connection);
+	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, HashMap<Integer, String> mapCategory,
+			HashMap<Integer, String> mapDifficulty) {
+		ResultSet myResultSet = gamesRepository.selectGamesByDifficultyId(difficultyId);
 		List<Game> myList = makeGameList(myResultSet);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game is correponding to the difficulty level you entered");
@@ -450,6 +427,13 @@ public class GamesServices {
 
 	}
 
+	public void insertNewLevelDifficulty() {
+		gamesRepository.insertNewLevelDifficulty("insoluble");
+	}
+	
+	
+	
+	
 	// ---------------------------------------------
 	// ----------------------------------------------
 	// Comparator pour le tri des media par titre

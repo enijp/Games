@@ -9,74 +9,45 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import be.belfius.games.domain.Borrower;
+import be.belfius.games.domain.Category;
 import be.belfius.games.domain.Game;
 import be.belfius.games.repository.*;
 
 public class GamesServices {
 
+	private static Logger logger = LoggerFactory.getLogger(GamesServices.class);
+
 	private GamesRepository gamesRepository = new GamesRepository();
 
-//	public Connection connectToGamesDB(String url, String login, String password, String driver)
-//			throws ClassNotFoundException {
-//		return gamesRepository.connectToGamesDB(url, login, password, driver);
-//	}
-//
-//	public void closeGamesDB(Connection connection) {
-//		gamesRepository.closeGamesDB(connection);
-//	}
-
 	public void showOneCategoryDetails(int id) {
-		ResultSet myResultSet = gamesRepository.selectOneCategoryById(id);
-		try {
-			if (myResultSet.next()) {
-				// System.out.println(myResultSet);
-				System.out.println("Category Id=" + myResultSet.getInt("id") + "\n" + "Category Name="
-						+ myResultSet.getString("category_name"));
-
-			} else {
-				System.out.println("Sorry, no Game Category is correponding to the category id you entered");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<Category> myList = gamesRepository.selectOneCategoryById(id);
+		if (myList.isEmpty())
+			showMessageEmptySelection();
+		else {
+			myList.forEach(System.out::println);
 		}
-
 	}
 
 	public void showOneBorrowerDetails(int id) {
-		ResultSet myResultSet = gamesRepository.selectOneBorrowerById(id);
-		try {
-			if (myResultSet.next()) {
-				// System.out.println(myResultSet);
-				System.out.println("Borrower Id=" + myResultSet.getInt("id") + "\n" + "name: "
-						+ myResultSet.getString("borrower_name") + "\t" + "City: " + myResultSet.getString("city"));
-
-			} else {
-				System.out.println("Sorry, no Borrower is correponding to the borrower id you entered");
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		List<Borrower> myList = gamesRepository.selectOneBorrowerById(id);
+		if (myList.isEmpty())
+			showMessageEmptySelection();
+		else {
+			myList.forEach((x) -> x.toStringFmtLight());
 		}
-
 	}
 
 	public void showAllDetailsGameSelectedByName(String gameName, HashMap<Integer, String> mapCategory,
 			HashMap<Integer, String> mapDifficulty) {
-		ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
-		List<Game> myList = makeGameList(myResultSet);
+		// ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
+		List<Game> myList = gamesRepository.selectGameByName(gameName);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game is correponding to the game name you entered");
 		} else {
-			// System.out.println("-----------------" + "\n" + "Game Détail:(before
-			// 23/04/2020)");
-			// for (Game game : myList) {
-			// showAllDetailsGame(game, mapCategory, mapDifficulty);
-			// System.out.println("-----------------------------");
-			// }
-			// (since 23/04/2020)
 			System.out.println("-----------------" + "\n" + "Game Détail:");
 			myList.forEach((x) -> showAllDetailsGame(x, mapCategory, mapDifficulty));
 
@@ -98,8 +69,8 @@ public class GamesServices {
 	}
 
 	public void writeGameDataSelectedByNameToFile(String gameName, String myFileName) {
-		ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
-		List<Game> myList = makeGameList(myResultSet);
+		// ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
+		List<Game> myList = gamesRepository.selectGameByName(gameName);
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game is correponding to your selection");
 		} else {
@@ -108,15 +79,11 @@ public class GamesServices {
 	}
 
 	public void showGameSelectedByName(String gameName) {
-		ResultSet myResultSet = gamesRepository.selectGameByName(gameName);
-		List<Game> myList = makeGameList(myResultSet);
-		displayGameListDetails(myList, "light");
+		displayGameListDetails(gamesRepository.selectGameByName(gameName), "light");
 	}
 
 	public void showOneGameDetails(int id) {
-		ResultSet myResultSet = gamesRepository.selectOneGameById(id);
-		List<Game> myList = makeGameList(myResultSet);
-		displayGameListDetails(myList);
+		displayGameListDetails(gamesRepository.selectOneGameById(id));
 	}
 
 	public void displayGameListDetails(List<Game> myList) {
@@ -125,37 +92,29 @@ public class GamesServices {
 
 	public void displayGameListDetails(List<Game> myList, String typeDetails) {
 		System.out.println("-----------------" + "\n" + "Game Détail:");
-		if (myList.isEmpty()) {
-			System.out.println("Sorry, no game is correponding to your selection");
-		} else {
+		if (myList.isEmpty())
+			showMessageEmptySelection();
+		else {
 			switch (typeDetails) {
 			case "light":
-				// System.out.println("detail light");
-				// for (Game game : myList) {
-				// System.out.println(game.toStringLight());
-				// }
-				myList.forEach((x) -> System.out.println(x.toStringLight()));
-
+				// myList.forEach((x) -> System.out.println(x.toStringFmtLight()));
+				// avec ci-dessus, j'ai un problème de format : des données supplémentaires qui
+				// s'affichent à la fin du stream !!!
+				myList.forEach((x) -> x.toStringFmtLight());
 				break;
 			case "light2":
-				// System.out.println("detail light2");
-				// for (Game game : myList) {
-				// System.out.println(game.toStringLight2());
-				// }
-
 				myList.forEach((x) -> System.out.println(x.toStringLight2()));
 				break;
 			default:
-				// System.out.println("detail default");
-				// for (Game game : myList) {
-				// System.out.println(game.toString());
-				// }
 				myList.forEach((x) -> System.out.println(x.toString()));
 				break;
 			}
-
 		}
 		System.out.println("-----------------");
+	}
+
+	private void showMessageEmptySelection() {
+		System.out.println("Sorry, no result is correponding to your selection");
 	}
 
 	public List<Game> makeGameList(ResultSet myResultSet) {
@@ -187,23 +146,21 @@ public class GamesServices {
 	}
 
 	public void showAllGamesSortedViaSql() {
-		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot("order by game_name");
-		List<Game> myList = makeGameList(myResultSet);
-		displayGameListDetails(myList, "light2");
+		displayGameListDetails(gamesRepository.selectAllGamesSortedOrNot("order by game_name"), "light2");
 
 	}
 
 	public void showAllGamesSortedViaInternal() {
-		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot();
-		List<Game> myList = makeGameList(myResultSet);
+		List<Game> myList = gamesRepository.selectAllGamesSortedOrNot();
 		List<Game> mySortedList = sortGamesList(myList, "byName");
 		displayGameListDetails(mySortedList, "light2");
 
 	}
 
 	public void showAllGamesWithCategory(HashMap<Integer, String> mapCategory) {
-		ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot();
-		List<Game> myList = makeGameList(myResultSet);
+		// ResultSet myResultSet = gamesRepository.selectAllGamesSortedOrNot();
+		// List<Game> myList = makeGameList(myResultSet);
+		List<Game> myList = gamesRepository.selectAllGamesSortedOrNot();
 		if (myList.isEmpty()) {
 			System.out.println("Sorry, no game exists");
 		} else {
@@ -220,9 +177,9 @@ public class GamesServices {
 			while (myResultSet.next()) {
 				mapDifficulty.put(myResultSet.getInt("id"), myResultSet.getString("difficulty_name"));
 			}
-
+			logger.trace("hashmap mapDifficulty loaded");
+			mapDifficulty.forEach((k, v) -> logger.trace("Key = " + k + ", Value = " + v));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return mapDifficulty;
@@ -230,12 +187,13 @@ public class GamesServices {
 
 	public HashMap<Integer, String> fillCategoryMap() {
 		HashMap<Integer, String> mapCategory = new HashMap<Integer, String>();
-
 		ResultSet myResultSet = gamesRepository.selectAllCategory();
 		try {
 			while (myResultSet.next()) {
 				mapCategory.put(myResultSet.getInt("id"), myResultSet.getString("category_name"));
 			}
+			logger.trace("hashmap mapCategory loaded");
+			mapCategory.forEach((k, v) -> logger.trace("Key = " + k + ", Value = " + v));
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -430,13 +388,10 @@ public class GamesServices {
 	public void insertNewLevelDifficulty() {
 		gamesRepository.insertNewLevelDifficulty("insoluble");
 	}
-	
-	
-	
-	
+
 	// ---------------------------------------------
 	// ----------------------------------------------
-	// Comparator pour le tri des media par titre
+	// Comparator pour le tri des games par titre
 	public static Comparator<Game> ComparatorName = new Comparator<Game>() {
 
 		@Override

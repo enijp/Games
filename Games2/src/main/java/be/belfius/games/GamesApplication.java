@@ -1,11 +1,6 @@
 package be.belfius.games;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-
-//import org.apache.logging.log4j.core.Logger;
-
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,68 +9,45 @@ import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Properties;
 import java.util.Scanner;
-//import java.util.logging.Logger;
 
-import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import be.belfius.games.exceptions.inputNumericException;
 import be.belfius.games.exceptions.inputStringException;
 import be.belfius.games.services.GamesServices;
-import be.belfius.games.services.Helper;
+import be.belfius.games.utils.Helper;
 
 public class GamesApplication {
 
-	static Logger logger = LoggerFactory.getLogger(GamesApplication.class);
+	private static Logger logger = LoggerFactory.getLogger(GamesApplication.class);
 
 	private Scanner scanner = new Scanner(System.in);
 	private GamesServices gamesServices = new GamesServices();
 	private static HashMap<Integer, String> mapCategory;
 	private static HashMap<Integer, String> mapDifficulty;
-	
-	static String defaultFolder = "";
-	static String defaultOutputFileName = "";
 
 	public static void main(String[] args) {
 		GamesApplication myApp = new GamesApplication();
 		System.setProperty("org.slf4j.simpleLogger.showDateTime", "true"); // Use this setting to show the date and time
 		System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "yyyy-MM-dd HH:mm:ss"); // Use this setting to
 																							// format te date and time
-
+		try {
+			Class.forName(Helper.loadPropertiesFile().getProperty("db.driverClassName"));
+		} catch (ClassNotFoundException e) {
+			logger.error("Error mysql driver: problems : problems can occurs...", e);
+		}
 		logger.info("GamesApplication starts!");
-
-		// read properties
-		logger.trace("reading properties");
-		Properties prop = Helper.loadPropertiesFile();
-		prop.forEach((k, v) -> System.out.println("key=" + k + " ; value=" + v));
-
-		System.out.println("default directory=" + prop.get("fi.defaultOutputFolder"));
-		System.out.println("default output filename=" + prop.get("fi.defaultOutputFileName"));
-
-		logger.info("running with properties for <" + prop.get("exec.env") + "> environment");
-
-		defaultFolder = prop.get("fi.defaultOutputFolder").toString();
-		defaultOutputFileName = prop.get("fi.defaultOutputFileName").toString();
-		logger.trace("default folder=" + defaultFolder);
-		logger.trace("default output filename=" + defaultOutputFileName);
-
-		//String url = "jdbc:mysql://localhost:3306/games";
-		//String login = "root";
-		//String password = "";
-		//String driver = "com.mysql.jdbc.Driver";
-		//Connection myCon = myApp.connectToGamesDB(url, login, password, driver);
+		myApp.displayProperties();
 
 		// fill the map with category table
 		mapCategory = myApp.fillCategoryMap();
-		logger.trace("hashmap mapCategory loaded");
-		mapCategory.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
 
 		// fill the map with difficulty table
 		mapDifficulty = myApp.fillDifficultyMap();
-		logger.trace("hashmap mapDifficulty loaded");
-		mapDifficulty.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
+
 		System.out.println("");
-		
+
 		boolean loop = true;
 		while (loop) {
 
@@ -86,34 +58,29 @@ public class GamesApplication {
 				try {
 					myApp.showOneCategoryDetails(myApp.askForCategoryId());
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
+					logger.error(e.getMessage());
 				}
 				break;
 			case "2":
 				try {
 					myApp.showOneGameDetails(myApp.askForGameId());
 				} catch (Exception e) {
-					// e.printStackTrace();
-					System.out.println(e.getMessage());
+					logger.error(e.getMessage());
 				}
-
 				break;
 			case "3":
 				try {
 					myApp.showOneBorrowerDetails(myApp.askForBorrowerId());
 				} catch (Exception e) {
-					System.out.println(e.getMessage());
-					// e.printStackTrace();
+					logger.error(e.getMessage());
 				}
-
 				break;
 			case "4":
 				try {
 					myApp.showGameSelectedByName(myApp.askForGameName());
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
-
 				break;
 			case "5":
 				// d'abord via le tri SQL
@@ -178,7 +145,7 @@ public class GamesApplication {
 				// en then the user enter the level that he wants to show the games
 				try {
 					// myApp.askForDifficultyLevel(mapDifficulty);
-					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty), 
+					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty),
 							mapCategory, mapDifficulty);
 				} catch (inputStringException e) {
 					// e1.printStackTrace();
@@ -220,20 +187,21 @@ public class GamesApplication {
 					e.printStackTrace();
 				}
 				break;
-			case "12"://new game category
-			myApp.insertNewLevelDifficulty();
-			break;
+			case "12":// new game category
+				myApp.insertNewLevelDifficulty();
+				break;
 			case "X":
 			case "x":
-				//myApp.closeGamesDB(myCon);
-
+				// myApp.closeGamesDB(myCon);
 				System.out.println("bye bye...");
 				loop = false;
 				break;
-
 			default:
-				System.out.println("Your choice '" + choice + "' is invalid");
-				logger.error("Your choice '{}' is invalid", choice);
+				if (choice.isEmpty()) {
+					logger.error("Your entry is empty; you have to make a choice:");
+				} else {
+					logger.error("Your choice '{}' is invalid", choice);
+				}
 				break;
 
 			}
@@ -248,13 +216,12 @@ public class GamesApplication {
 	}
 
 	private void showMenu0() {
-		String[] menu1 = { " 1. Show a category id", " 2. Show a Game id", " 3. Show a Borrower id",
+		String[] menu1 = { " 1. Show a game category of your choice", " 2. Show a Game of your choice", " 3. Show a Borrower id",
 				" 4. Show a game of your choice", " 5. Show all Games", " 6. Show a list of Games and Choose a Game",
 				" 7. Show borrowed games", " 8. Advanced search: difficulty", " 9. Complex search : borrowers",
-				"10. List of borrowed games between 2 dates", 
-				"11. Write a game list of you choice to a file (csv formatted)", 
-				"12. Insert a new Difficulty Level", " ",
-				"X. Quit the Games Application", " " };
+				"10. List of borrowed games between 2 dates",
+				"11. Write a game list of you choice to a file (csv formatted)", "12. Insert a new Difficulty Level",
+				" ", "X. Quit the Games Application", " " };
 		System.out.println("           Games Application    (by J-Ph. Genicot)");
 		System.out.println("           -----------------" + "\n");
 
@@ -390,13 +357,13 @@ public class GamesApplication {
 		gamesServices.showAllGamesSortedViaInternal();
 	}
 
-	public void showAllDetailsGameSelectedByName(String gameName, 
-			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
+	public void showAllDetailsGameSelectedByName(String gameName, HashMap<Integer, String> mapCategory,
+			HashMap<Integer, String> mapDifficulty) {
 		gamesServices.showAllDetailsGameSelectedByName(gameName, mapCategory, mapDifficulty);
 	}
 
-	public void writeGameDataSelectedByNameToFile(String gameName, 
-			HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
+	public void writeGameDataSelectedByNameToFile(String gameName, HashMap<Integer, String> mapCategory,
+			HashMap<Integer, String> mapDifficulty) {
 
 		String myFolder = askForDirectory();
 		String myFileName = askForFileName(myFolder);
@@ -405,8 +372,7 @@ public class GamesApplication {
 	}
 
 	public String askForDirectory() {
-		// String folderx = askForNewFolderName("H:/_LAN_JPG/testjava/");
-		String folderx = askForNewFolderName(defaultFolder);
+		String folderx = askForNewFolderName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFolder"));
 		File folder = new File(folderx);
 		if (!folder.exists()) {
 			folder.mkdir();
@@ -416,8 +382,7 @@ public class GamesApplication {
 	}
 
 	public String askForFileName(String folder) {
-		// String myFileName = askForNewFileName("outfile.txt");
-		String myFileName = askForNewFileName(defaultOutputFileName);
+		String myFileName = askForNewFileName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFileName"));
 		File fileName = new File(folder + myFileName);
 		System.out.println("filename=" + fileName.toString());
 		// if (!fileName.exists()) {
@@ -457,8 +422,7 @@ public class GamesApplication {
 		logger.trace("hashmap mapDifficuty RE-loaded");
 		mapDifficulty.forEach((k, v) -> System.out.println("Key = " + k + ", Value = " + v));
 	}
-	
-	
+
 	private void showAllGamesWithCategory(HashMap<Integer, String> mapCategory) {
 		gamesServices.showAllGamesWithCategory(mapCategory);
 
@@ -492,7 +456,8 @@ public class GamesApplication {
 
 	}
 
-	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, HashMap<Integer, String> mapCategory, HashMap<Integer, String> mapDifficulty) {
+	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, HashMap<Integer, String> mapCategory,
+			HashMap<Integer, String> mapDifficulty) {
 		gamesServices.showAllGamesWithSelectedDifficultyLevel(difficultyId, mapCategory, mapDifficulty);
 
 	}
@@ -526,22 +491,29 @@ public class GamesApplication {
 		return false;
 	}
 
-	
-	
 	// *******************************************************
 	public String myInputText(String textToDisplay) {
 		scanner = new Scanner(System.in);
 		System.out.println(textToDisplay);
-		String inputTextin = scanner.nextLine();
-
-		return inputTextin;
+		return scanner.nextLine();
 	}
 
 	public int myInputInt(String textToDisplay) {
 		scanner = new Scanner(System.in);
 		System.out.println(textToDisplay);
-		int myInputInt = scanner.nextInt();
-
+		// int myInputInt = scanner.nextInt();
+//
+		// return myInputInt;
+		int myInputInt = 0;
+		Boolean loop = true;
+		while (loop) {
+			try {
+				myInputInt = Integer.parseInt(scanner.nextLine());
+				loop = false;
+			} catch (NumberFormatException e) {
+				logger.error("Your entry is not valid; Please enter a number");
+			}
+		}
 		return myInputInt;
 	}
 
@@ -552,18 +524,15 @@ public class GamesApplication {
 		return myInput;
 	}
 
-	public Properties loadPropertiesFile(String filePath) {
+	public void displayProperties() {
+		// read properties
+		logger.trace("reading properties:");
+		Properties prop = Helper.loadPropertiesFile();
+		prop.forEach((k, v) -> logger.trace("key=" + k + " ; value=" + v));
 
-		Properties prop = new Properties();
+		logger.info("running with properties for <" + prop.get("exec.env") + "> environment");
 
-		try (InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream(filePath)) {
-			prop.load(resourceAsStream);
-		} catch (IOException e) {
-			System.err.println("Unable to load properties file : " + filePath);
-		}
-
-		return prop;
-
+		logger.trace("default folder=" + Helper.loadPropertiesFile().getProperty("fi.defaultOutputFolder"));
+		logger.trace("default output filename=" + Helper.loadPropertiesFile().getProperty("fi.defaultOutputFileName"));
 	}
-
 }

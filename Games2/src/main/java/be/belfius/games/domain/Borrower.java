@@ -1,5 +1,7 @@
 package be.belfius.games.domain;
 
+import java.io.PrintStream;
+
 public class Borrower {
 	int Id;
 	String borrower_name;
@@ -82,6 +84,11 @@ public class Borrower {
 		return "Borrower [Id=" + Id + ", borrower_name=" + borrower_name + ", street=" + street + ", house_number="
 				+ house_number + ", bus_number=" + bus_number + ", postcode=" + postcode + ", city=" + city
 				+ ", telephone=" + telephone + ", email=" + email + "]";
+	}
+	
+	public PrintStream toStringFmtLight() {
+		return System.out.printf("Borrower id=%5d  Name=%-40s  City=%-40s", 
+				Id, borrower_name, city);
 	}
 	public Borrower() {
 		super();

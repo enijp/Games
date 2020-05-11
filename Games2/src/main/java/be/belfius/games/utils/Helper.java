@@ -1,4 +1,4 @@
-package be.belfius.games.services;
+package be.belfius.games.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

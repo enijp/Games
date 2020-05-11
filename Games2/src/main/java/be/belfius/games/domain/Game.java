@@ -1,5 +1,7 @@
 package be.belfius.games.domain;
 
+import java.io.PrintStream;
+
 public class Game {
 	int Id;
 	String game_name;
@@ -143,24 +145,17 @@ public class Game {
 
 	@Override
 	public String toString() {
-		return "Id=" + Id + ", game_name=" + game_name + ", editor=" + editor + ", author=" + author 
-				+ "\n\t" + "year_edition=" + year_edition + ", age=" + age + 
-						", min_players=" + min_players + ", max_players=" + max_players 
-				+"\n\t"	+ "category_id=" + category_id + ", play_duration=" + play_duration + ", difficulty_id="
-				+ difficulty_id + ", price=" + price + ", image=" + image ;
+		return "Id=" + Id + ", game_name=" + game_name + ", editor=" + editor + ", author=" + author + "\n\t"
+				+ "year_edition=" + year_edition + ", age=" + age + ", min_players=" + min_players + ", max_players="
+				+ max_players + "\n\t" + "category_id=" + category_id + ", play_duration=" + play_duration
+				+ ", difficulty_id=" + difficulty_id + ", price=" + price + ", image=" + image;
 	}
 
-	public String toStringLight() {
-		return "game_name=" + game_name + "\t" + "editor=" + editor   
-				+ "\t" + "age=" + age + "\t" +"price=" + price ;
-		}
+	public PrintStream toStringFmtLight() {
+		return System.out.printf("Name=%-40s  Editor=%-25s  Age=%-20s  Price=%6.2f%n", game_name, editor, age, price);
+	}
 
 	public String toStringLight2() {
-		return "game_name=" + game_name + "\t" + "editor=" + editor   
-				+  "\t" +"price=" + price ;
-		}
-
-	
-
-	
+		return "game_name=" + game_name + "\t" + "editor=" + editor + "\t" + "price=" + price;
+	}
 }

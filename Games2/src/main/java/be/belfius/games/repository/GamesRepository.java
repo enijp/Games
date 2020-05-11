@@ -8,94 +8,73 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import be.belfius.games.domain.Borrower;
+import be.belfius.games.domain.Category;
 import be.belfius.games.domain.Game;
-import be.belfius.games.services.Helper;
+import be.belfius.games.utils.Database;
+import be.belfius.games.utils.Helper;
 
 public class GamesRepository {
 
-//	public Connection connectToGamesDB(String url, String login, String password, String driver)
-//			throws ClassNotFoundException {
-//		// System.out.println("url="+url+"/login="+login+"/driver="+driver);
-//		Class.forName(driver);
-//		Connection myConnection = null;
-//		try {
-//			myConnection = DriverManager.getConnection(url, login, password);
-//
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("problème lors de la connection à la DB Games");
-//			e.printStackTrace();
-//		}
-//		return myConnection;
-//	}
-//
-//	public void closeGamesDB(Connection connection) {
-//		try {
-//			connection.close();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			System.out.println("problème lors du close de la connection de la DB Games");
-//			e.printStackTrace();
-//		}
-//	}
+	private static Logger logger = LoggerFactory.getLogger(GamesRepository.class);
 
-	public ResultSet selectOneCategoryById(int id) {
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		Connection myCon;
-		try {
-			myCon = DriverManager.getConnection(Helper.loadPropertiesFile().getProperty("db.url"),
-					Helper.loadPropertiesFile().getProperty("db.username"),
-					Helper.loadPropertiesFile().getProperty("db.password"));
-
-			statement = myCon.prepareStatement("SELECT * FROM Category WHERE id = ?");
+	public List<Category> selectOneCategoryById(int id) {
+		ArrayList<Category> myList = new ArrayList<Category>();
+		try (Connection myCon = new Database().createConnection()) {
+			PreparedStatement statement = myCon.prepareStatement("SELECT * FROM Category WHERE id = ?");
 			statement.setDouble(1, id);
-			resultSet = statement.executeQuery();
+			ResultSet myResultSet = statement.executeQuery();
+			while (myResultSet.next()) {
+				Category category = new Category();
+				category.setId(myResultSet.getInt("id"));
+				category.setCategory_name(myResultSet.getString("category_name"));
+				myList.add(category);
+			}
+			return myList;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			logger.error("selectOneCategoryById", e);
 			e.printStackTrace();
 		}
-		return resultSet;
-
+		return Collections.emptyList();
 	}
 
-	public ResultSet selectOneBorrowerById(int id) {
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		Connection myCon;
-		try {
-			myCon = DriverManager.getConnection(Helper.loadPropertiesFile().getProperty("db.url"),
-					Helper.loadPropertiesFile().getProperty("db.username"),
-					Helper.loadPropertiesFile().getProperty("db.password"));
-
-			statement = myCon.prepareStatement("SELECT * FROM Borrower WHERE id = ?");
+	public List<Borrower> selectOneBorrowerById(int id) {
+		ArrayList<Borrower> myList = new ArrayList<Borrower>();
+		try (Connection myCon = new Database().createConnection()) {
+			PreparedStatement statement = myCon.prepareStatement("SELECT * FROM Borrower WHERE id = ?");
 			statement.setDouble(1, id);
-			resultSet = statement.executeQuery();
+			ResultSet myResultSet = statement.executeQuery();
+			while (myResultSet.next()) {
+				Borrower borrower = new Borrower();
+				borrower.setId(myResultSet.getInt("id"));
+				borrower.setBorrower_name(myResultSet.getString("borrower_name"));
+				borrower.setCity(myResultSet.getString("city"));
+				myList.add(borrower);
+			}
+			return myList;
+		} catch (SQLException e) {
+			logger.error("selectOneBorrowerById", e);
+			e.printStackTrace();
+		}
+		return Collections.emptyList();
+	}
+
+	public List<Game> selectOneGameById(int id) {
+		try (Connection myCon = new Database().createConnection()) {
+			PreparedStatement statement = myCon.prepareStatement("SELECT * FROM Game WHERE id = ?");
+			statement.setDouble(1, id);
+			return makeGameList(statement.executeQuery());
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return resultSet;
-
-	}
-
-	public ResultSet selectOneGameById(int id) {
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		Connection myCon;
-		try {
-			myCon = DriverManager.getConnection(Helper.loadPropertiesFile().getProperty("db.url"),
-					Helper.loadPropertiesFile().getProperty("db.username"),
-					Helper.loadPropertiesFile().getProperty("db.password"));
-			statement = myCon.prepareStatement("SELECT * FROM Game WHERE id = ?");
-			statement.setDouble(1, id);
-			resultSet = statement.executeQuery();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return resultSet;
+		return Collections.emptyList();
 	}
 
 	// ****
@@ -135,24 +114,17 @@ public class GamesRepository {
 
 	}
 
-	public ResultSet selectGameByName(String gameName) {
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		Connection myCon;
-		try {
-			myCon = DriverManager.getConnection(Helper.loadPropertiesFile().getProperty("db.url"),
-					Helper.loadPropertiesFile().getProperty("db.username"),
-					Helper.loadPropertiesFile().getProperty("db.password"));
-
-			statement = myCon.prepareStatement("SELECT * FROM Game WHERE " + "UPPER(game_name) LIKE UPPER(?)  ");
+	public List<Game> selectGameByName(String gameName) {
+		try (Connection myCon = new Database().createConnection()) {
+			PreparedStatement statement = myCon
+					.prepareStatement("SELECT * FROM Game WHERE " + "UPPER(game_name) LIKE UPPER(?)  ");
 			statement.setString(1, "%" + gameName + "%");
-			resultSet = statement.executeQuery();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			return makeGameList(statement.executeQuery());
+		} catch (SQLException e) {
+			logger.error("selectGameByName", e);
+			e.printStackTrace();
 		}
-		return resultSet;
-
+		return Collections.emptyList();
 	}
 
 	public void insertNewLevelDifficulty(String difficulty) {
@@ -171,10 +143,10 @@ public class GamesRepository {
 			statement.setString(1, difficulty);
 			System.out.println("statement=" + statement);
 			try {
-				int nbIns= statement.executeUpdate();
-				System.out.println("nbre insert="+ nbIns);
-				//myCon.commit();
-				System.out.println("nbre insert="+ nbIns);
+				int nbIns = statement.executeUpdate();
+				System.out.println("nbre insert=" + nbIns);
+				// myCon.commit();
+				System.out.println("nbre insert=" + nbIns);
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();
@@ -185,27 +157,49 @@ public class GamesRepository {
 		}
 	}
 
-	public ResultSet selectAllGamesSortedOrNot() {
+	public List<Game> selectAllGamesSortedOrNot() {
 		return selectAllGamesSortedOrNot("");
 	}
 
-	public ResultSet selectAllGamesSortedOrNot(String orderByClause) {
-		PreparedStatement statement = null;
-		ResultSet resultSet = null;
-		Connection myCon;
-		try {
-			myCon = DriverManager.getConnection(Helper.loadPropertiesFile().getProperty("db.url"),
-					Helper.loadPropertiesFile().getProperty("db.username"),
-					Helper.loadPropertiesFile().getProperty("db.password"));
-			statement = myCon
+	public List<Game> selectAllGamesSortedOrNot(String orderByClause) {
+		List<Game> myList = null;
+		try (Connection myCon = new Database().createConnection()) {
+			PreparedStatement statement = myCon
 					.prepareStatement("SELECT * FROM Game " + (orderByClause.isEmpty() ? "" : " " + orderByClause));
-			resultSet = statement.executeQuery();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			myList = makeGameList(statement.executeQuery());
+		} catch (SQLException e) {
+			logger.error("in selectAllGamesSortedOrNot", e);
+			e.printStackTrace();
 		}
-		return resultSet;
+		return myList;
 
+	}
+
+	public List<Game> makeGameList(ResultSet myResultSet) {
+		List<Game> myGameList = new ArrayList<>();
+		try {
+			while (myResultSet.next()) {
+				Game game = new Game();
+				game.setId(myResultSet.getInt("id"));
+				game.setGame_name(myResultSet.getString("game_name"));
+				game.setEditor(myResultSet.getString("editor"));
+				game.setAuthor(myResultSet.getString("author"));
+				game.setYear_edition(myResultSet.getInt("year_edition"));
+				game.setAge(myResultSet.getString("age"));
+				game.setMin_players(myResultSet.getInt("min_players"));
+				game.setMax_players(myResultSet.getInt("max_players"));
+				game.setCategory_id(myResultSet.getInt("category_id"));
+				game.setPlay_duration(myResultSet.getString("play_duration"));
+				game.setDifficulty_id(myResultSet.getInt("difficulty_id"));
+				game.setPrice(myResultSet.getFloat("price"));
+				game.setImage(myResultSet.getString("image"));
+				myGameList.add(game);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return myGameList;
 	}
 
 	public ResultSet selectAllCategory() {
@@ -218,6 +212,7 @@ public class GamesRepository {
 					Helper.loadPropertiesFile().getProperty("db.password"));
 			statement = myCon.prepareStatement("SELECT * FROM Category ");
 			resultSet = statement.executeQuery();
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

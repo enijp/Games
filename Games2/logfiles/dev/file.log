@@ -1,15 +1,805 @@
-2020-05-06 16:26:15,132 [main] INFO  be.belfius.games.GamesApplication - GamesApplication starts!
-2020-05-06 16:26:15,147 [main] TRACE be.belfius.games.GamesApplication - reading properties
-2020-05-06 16:26:15,222 [main] TRACE be.belfius.games.GamesApplication - default folder=R:/java-jp/dev/
-2020-05-06 16:26:15,224 [main] TRACE be.belfius.games.GamesApplication - default output filename=outfile.txt
-2020-05-06 16:26:15,610 [main] TRACE be.belfius.games.GamesApplication - hashmap mapCategory loaded
-2020-05-06 16:26:15,614 [main] TRACE be.belfius.games.GamesApplication - hashmap mapDifficulty loaded
-2020-05-06 16:26:29,461 [main] ERROR be.belfius.games.GamesApplication - Your choice 'ss' is invalid
-2020-05-06 16:29:29,177 [main] INFO  be.belfius.games.GamesApplication - GamesApplication starts!
-2020-05-06 16:29:29,192 [main] TRACE be.belfius.games.GamesApplication - reading properties
-2020-05-06 16:29:29,268 [main] INFO  be.belfius.games.GamesApplication - running with properties for <dev> environment
-2020-05-06 16:29:29,269 [main] TRACE be.belfius.games.GamesApplication - default folder=R:/java-jp/dev/
-2020-05-06 16:29:29,270 [main] TRACE be.belfius.games.GamesApplication - default output filename=outfile.txt
-2020-05-06 16:29:29,656 [main] TRACE be.belfius.games.GamesApplication - hashmap mapCategory loaded
-2020-05-06 16:29:29,698 [main] TRACE be.belfius.games.GamesApplication - hashmap mapDifficulty loaded
-2020-05-06 16:29:33,035 [main] ERROR be.belfius.games.GamesApplication - Your choice 'ff' is invalid
+2020-05-11 10:39:10,804 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 10:39:10,810 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 10:39:10,812 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 10:39:10,813 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 10:39:10,814 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 10:39:10,816 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 10:39:10,817 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 10:39:10,819 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 10:39:10,821 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 10:39:10,822 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 10:39:10,824 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 10:39:10,825 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 10:39:10,826 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 10:39:10,828 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 10:39:10,829 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 10:39:10,830 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 10:39:10,832 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 10:39:10,833 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 10:39:10,834 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 10:39:10,836 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 10:39:10,837 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 10:39:10,839 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 10:39:10,841 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 10:39:10,842 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 10:39:10,844 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 10:39:10,846 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 10:39:10,847 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 10:39:10,849 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 10:39:10,850 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 10:39:10,878 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 10:39:10,880 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 10:39:10,881 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 10:39:10,883 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 10:39:10,884 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 10:39:10,885 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 10:43:47,884 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 10:43:47,891 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 10:43:47,893 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 10:43:47,894 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 10:43:47,895 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 10:43:47,896 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 10:43:47,898 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 10:43:47,899 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 10:43:47,901 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 10:43:47,902 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 10:43:47,903 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 10:43:47,904 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 10:43:47,906 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 10:43:47,907 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 10:43:47,908 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 10:43:47,910 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 10:43:47,911 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 10:43:47,912 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 10:43:47,913 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 10:43:47,915 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 10:43:47,916 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 10:43:47,918 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 10:43:47,920 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 10:43:47,921 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 10:43:47,922 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 10:43:47,924 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 10:43:47,926 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 10:43:47,927 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 10:43:47,928 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 10:43:47,957 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 10:43:47,959 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 10:43:47,961 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 10:43:47,963 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 10:43:47,964 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 10:43:47,965 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 10:47:48,246 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 10:47:48,251 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 10:47:48,252 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 10:47:48,254 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 10:47:48,255 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 10:47:48,256 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 10:47:48,258 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 10:47:48,259 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 10:47:48,261 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 10:47:48,262 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 10:47:48,264 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 10:47:48,265 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 10:47:48,266 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 10:47:48,268 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 10:47:48,269 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 10:47:48,270 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 10:47:48,272 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 10:47:48,273 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 10:47:48,274 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 10:47:48,276 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 10:47:48,277 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 10:47:48,280 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 10:47:48,281 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 10:47:48,283 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 10:47:48,284 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 10:47:48,286 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 10:47:48,287 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 10:47:48,288 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 10:47:48,290 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 10:47:48,323 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 10:47:48,326 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 10:47:48,328 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 10:47:48,329 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 10:47:48,330 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 10:47:48,332 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 11:04:34,415 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 11:04:34,422 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 11:04:34,424 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 11:04:34,426 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 11:04:34,428 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 11:04:34,432 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 11:04:34,433 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 11:04:34,435 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 11:04:34,437 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 11:04:34,438 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 11:04:34,440 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 11:04:34,441 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 11:04:34,442 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 11:04:34,444 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 11:04:34,445 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 11:04:34,446 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 11:04:34,448 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 11:04:34,450 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 11:04:34,451 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 11:04:34,453 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 11:04:34,454 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 11:04:34,455 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 11:04:34,456 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 11:04:34,458 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 11:04:34,460 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 11:04:34,461 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 11:04:34,462 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 11:04:34,464 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 11:04:34,465 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 11:04:34,494 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 11:04:34,496 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 11:04:34,498 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 11:04:34,500 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 11:04:34,502 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 11:04:34,504 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 11:05:28,277 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 11:05:28,285 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 11:05:28,286 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 11:05:28,288 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 11:05:28,291 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 11:05:28,292 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 11:05:28,294 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 11:05:28,295 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 11:05:28,297 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 11:05:28,298 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 11:05:28,301 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 11:05:28,302 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 11:05:28,304 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 11:05:28,305 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 11:05:28,307 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 11:05:28,308 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 11:05:28,310 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 11:05:28,311 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 11:05:28,312 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 11:05:28,314 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 11:05:28,315 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 11:05:28,316 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 11:05:28,318 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 11:05:28,319 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 11:05:28,321 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 11:05:28,322 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 11:05:28,324 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 11:05:28,325 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 11:05:28,326 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 11:05:28,363 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 11:05:28,365 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 11:05:28,367 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 11:05:28,368 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 11:05:28,370 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 11:05:28,372 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 11:11:41,867 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 11:11:41,872 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 11:11:41,873 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 11:11:41,875 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 11:11:41,876 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 11:11:41,878 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 11:11:41,879 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 11:11:41,880 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 11:11:41,881 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 11:11:41,884 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 11:11:41,885 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 11:11:41,887 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 11:11:41,888 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 11:11:41,890 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 11:11:41,891 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 11:11:41,893 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 11:11:41,894 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 11:11:41,895 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 11:11:41,897 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 11:11:41,898 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 11:11:41,900 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 11:11:41,901 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 11:11:41,902 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 11:11:41,903 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 11:11:41,905 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 11:11:41,906 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 11:11:41,908 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 11:11:41,909 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 11:11:41,910 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 11:11:41,937 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 11:11:41,940 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 11:11:41,942 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 11:11:41,943 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 11:11:41,945 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 11:11:41,946 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 12:01:58,080 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 12:01:58,085 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 12:01:58,086 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 12:01:58,087 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 12:01:58,089 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 12:01:58,090 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 12:01:58,091 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 12:01:58,093 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 12:01:58,094 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 12:01:58,096 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 12:01:58,097 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 12:01:58,098 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 12:01:58,100 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 12:01:58,101 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 12:01:58,102 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 12:01:58,104 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 12:01:58,105 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 12:01:58,106 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 12:01:58,108 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 12:01:58,109 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 12:01:58,110 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 12:01:58,112 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 12:01:58,113 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 12:01:58,114 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 12:01:58,116 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 12:01:58,117 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 12:01:58,118 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 12:01:58,120 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 12:01:58,121 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 12:01:58,148 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 12:01:58,150 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 12:01:58,152 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 12:01:58,153 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 12:01:58,154 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 12:01:58,156 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 12:04:16,195 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 12:04:16,199 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 12:04:16,201 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 12:04:16,202 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 12:04:16,203 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 12:04:16,205 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 12:04:16,206 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 12:04:16,208 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 12:04:16,209 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 12:04:16,210 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 12:04:16,212 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 12:04:16,213 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 12:04:16,214 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 12:04:16,216 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 12:04:16,217 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 12:04:16,218 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 12:04:16,220 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 12:04:16,222 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 12:04:16,224 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 12:04:16,226 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 12:04:16,233 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 12:04:16,235 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 12:04:16,237 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 12:04:16,238 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 12:04:16,241 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 12:04:16,243 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 12:04:16,247 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 12:04:16,252 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 12:04:16,254 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 12:04:16,289 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 12:04:16,291 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 12:04:16,293 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 12:04:16,294 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 12:04:16,295 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 12:04:16,297 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 13:59:31,901 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 13:59:31,906 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 13:59:31,907 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 13:59:31,909 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 13:59:31,910 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 13:59:31,911 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 13:59:31,913 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 13:59:31,914 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 13:59:31,916 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 13:59:31,917 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 13:59:31,919 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 13:59:31,920 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 13:59:31,921 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 13:59:31,923 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 13:59:31,924 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 13:59:31,925 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 13:59:31,927 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 13:59:31,928 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 13:59:31,929 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 13:59:31,931 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 13:59:31,932 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 13:59:31,934 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 13:59:31,935 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 13:59:31,937 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 13:59:31,939 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 13:59:31,941 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 13:59:31,943 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 13:59:31,944 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 13:59:31,946 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 13:59:31,981 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 13:59:31,983 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 13:59:31,985 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 13:59:31,987 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 13:59:31,988 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 13:59:31,989 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 14:22:03,541 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 14:22:03,545 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 14:22:03,547 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 14:22:03,548 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 14:22:03,550 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 14:22:03,551 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 14:22:03,552 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 14:22:03,554 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 14:22:03,557 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 14:22:03,558 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 14:22:03,559 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 14:22:03,561 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 14:22:03,562 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 14:22:03,564 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 14:22:03,565 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 14:22:03,567 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 14:22:03,568 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 14:22:03,570 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 14:22:03,572 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 14:22:03,574 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 14:22:03,575 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 14:22:03,576 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 14:22:03,578 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 14:22:03,579 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 14:22:03,581 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 14:22:03,582 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 14:22:03,583 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 14:22:03,584 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 14:22:03,586 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 14:22:03,620 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 14:22:03,622 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 14:22:03,624 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 14:22:03,625 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 14:22:03,627 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 14:22:03,629 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 14:27:47,012 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 14:27:47,017 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 14:27:47,019 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 14:27:47,020 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 14:27:47,022 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 14:27:47,023 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 14:27:47,024 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 14:27:47,026 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 14:27:47,027 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 14:27:47,028 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 14:27:47,030 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 14:27:47,031 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 14:27:47,033 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 14:27:47,034 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 14:27:47,036 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 14:27:47,037 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 14:27:47,039 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 14:27:47,040 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 14:27:47,041 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 14:27:47,043 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 14:27:47,044 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 14:27:47,046 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 14:27:47,047 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 14:27:47,048 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 14:27:47,050 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 14:27:47,051 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 14:27:47,052 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 14:27:47,054 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 14:27:47,055 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 14:27:47,085 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 14:27:47,087 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 14:27:47,089 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 14:27:47,090 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 14:27:47,092 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 14:27:47,093 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 14:59:37,749 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 14:59:37,754 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 14:59:37,755 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 14:59:37,756 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 14:59:37,758 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 14:59:37,759 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 14:59:37,761 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 14:59:37,762 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 14:59:37,763 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 14:59:37,765 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 14:59:37,766 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 14:59:37,767 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 14:59:37,769 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 14:59:37,770 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 14:59:37,772 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 14:59:37,773 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 14:59:37,774 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 14:59:37,776 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 14:59:37,777 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 14:59:37,779 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 14:59:37,780 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 14:59:37,781 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 14:59:37,782 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 14:59:37,784 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 14:59:37,785 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 14:59:37,786 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 14:59:37,788 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 14:59:37,789 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 14:59:37,791 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 14:59:37,819 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 14:59:37,821 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 14:59:37,822 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 14:59:37,824 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 14:59:37,825 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 14:59:37,827 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:24:18,587 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:24:18,592 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:24:18,593 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:24:18,595 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:24:18,596 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:24:18,597 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:24:18,599 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:24:18,600 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:24:18,601 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:24:18,603 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:24:18,604 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:24:18,605 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:24:18,607 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:24:18,608 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:24:18,609 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:24:18,611 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:24:18,612 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:24:18,614 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:24:18,615 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:24:18,617 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:24:18,618 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:24:18,619 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:24:18,621 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:24:18,622 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:24:18,624 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:24:18,625 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:24:18,626 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:24:18,628 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:24:18,629 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:24:18,656 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:24:18,658 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:24:18,660 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:24:18,663 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:24:18,665 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:24:18,666 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:29:57,547 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:29:57,552 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:29:57,554 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:29:57,555 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:29:57,556 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:29:57,558 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:29:57,559 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:29:57,560 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:29:57,562 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:29:57,563 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:29:57,564 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:29:57,566 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:29:57,567 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:29:57,569 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:29:57,570 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:29:57,571 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:29:57,573 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:29:57,574 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:29:57,575 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:29:57,577 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:29:57,578 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:29:57,579 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:29:57,580 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:29:57,582 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:29:57,583 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:29:57,584 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:29:57,585 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:29:57,587 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:29:57,588 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:29:57,619 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:29:57,621 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:29:57,622 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:29:57,624 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:29:57,625 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:29:57,626 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:34:14,684 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:34:14,689 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:34:14,690 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:34:14,691 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:34:14,693 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:34:14,694 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:34:14,695 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:34:14,697 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:34:14,698 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:34:14,699 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:34:14,701 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:34:14,702 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:34:14,703 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:34:14,705 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:34:14,706 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:34:14,707 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:34:14,708 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:34:14,710 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:34:14,711 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:34:14,713 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:34:14,714 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:34:14,715 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:34:14,716 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:34:14,718 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:34:14,719 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:34:14,720 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:34:14,722 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:34:14,723 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:34:14,724 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:34:14,751 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:34:14,753 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:34:14,754 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:34:14,756 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:34:14,757 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:34:14,758 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:35:19,623 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:35:19,628 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:35:19,629 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:35:19,630 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:35:19,632 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:35:19,633 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:35:19,635 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:35:19,636 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:35:19,637 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:35:19,639 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:35:19,640 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:35:19,642 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:35:19,643 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:35:19,644 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:35:19,645 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:35:19,647 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:35:19,649 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:35:19,650 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:35:19,652 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:35:19,653 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:35:19,654 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:35:19,656 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:35:19,657 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:35:19,658 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:35:19,660 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:35:19,661 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:35:19,662 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:35:19,663 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:35:19,666 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:35:19,697 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:35:19,699 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:35:19,700 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:35:19,702 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:35:19,703 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:35:19,704 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:37:07,634 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:37:07,638 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:37:07,639 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:37:07,641 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:37:07,642 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:37:07,643 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:37:07,646 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:37:07,647 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:37:07,648 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:37:07,650 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:37:07,651 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:37:07,652 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:37:07,654 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:37:07,655 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:37:07,657 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:37:07,658 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:37:07,659 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:37:07,660 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:37:07,662 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:37:07,663 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:37:07,664 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:37:07,666 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:37:07,667 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:37:07,668 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:37:07,670 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:37:07,671 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:37:07,672 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:37:07,674 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:37:07,675 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:37:07,703 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:37:07,705 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:37:07,706 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:37:07,708 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:37:07,709 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:37:07,710 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:39:24,132 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:39:24,140 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:39:24,142 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:39:24,144 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:39:24,145 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:39:24,146 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:39:24,149 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:39:24,150 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:39:24,152 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:39:24,153 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:39:24,156 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:39:24,158 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:39:24,159 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:39:24,160 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:39:24,161 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:39:24,163 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:39:24,164 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:39:24,166 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:39:24,169 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:39:24,170 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:39:24,172 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:39:24,174 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:39:24,176 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:39:24,178 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:39:24,180 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:39:24,181 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:39:24,183 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:39:24,185 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:39:24,187 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:39:24,230 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:39:24,232 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:39:24,234 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:39:24,236 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:39:24,237 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:39:24,239 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:41:02,499 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:41:02,504 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:41:02,505 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:41:02,507 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:41:02,508 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:41:02,509 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:41:02,511 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:41:02,512 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:41:02,514 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:41:02,515 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:41:02,516 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:41:02,518 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:41:02,519 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:41:02,521 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:41:02,522 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:41:02,524 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:41:02,525 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:41:02,527 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:41:02,528 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:41:02,530 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:41:02,531 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:41:02,532 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:41:02,534 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:41:02,535 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:41:02,537 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:41:02,538 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:41:02,539 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:41:02,541 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:41:02,542 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:41:02,573 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:41:02,575 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:41:02,576 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:41:02,578 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:41:02,579 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:41:02,580 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:42:47,686 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:42:47,690 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:42:47,691 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:42:47,693 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:42:47,694 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:42:47,695 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:42:47,697 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:42:47,698 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:42:47,700 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:42:47,701 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:42:47,703 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:42:47,704 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:42:47,705 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:42:47,707 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:42:47,708 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:42:47,710 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:42:47,711 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:42:47,712 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:42:47,714 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:42:47,715 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:42:47,717 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:42:47,718 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:42:47,719 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:42:47,720 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:42:47,722 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:42:47,723 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:42:47,724 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:42:47,726 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:42:47,727 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:42:47,755 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:42:47,757 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:42:47,759 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:42:47,761 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:42:47,762 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:42:47,763 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:44:11,413 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:44:11,421 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:44:11,423 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:44:11,424 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:44:11,425 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:44:11,427 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:44:11,428 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:44:11,433 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:44:11,435 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:44:11,436 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:44:11,438 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:44:11,439 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:44:11,440 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:44:11,441 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:44:11,445 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:44:11,447 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:44:11,449 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:44:11,450 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:44:11,452 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:44:11,453 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:44:11,454 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:44:11,456 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:44:11,457 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:44:11,458 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:44:11,460 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:44:11,461 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:44:11,463 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:44:11,465 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:44:11,466 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:44:11,494 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:44:11,496 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:44:11,497 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:44:11,499 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:44:11,502 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:44:11,504 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:48:14,243 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:48:14,249 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:48:14,251 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:48:14,252 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:48:14,254 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:48:14,255 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:48:14,257 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:48:14,258 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:48:14,259 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:48:14,261 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:48:14,262 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:48:14,263 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:48:14,265 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:48:14,266 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:48:14,267 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:48:14,269 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:48:14,270 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:48:14,271 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:48:14,273 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:48:14,274 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:48:14,275 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:48:14,276 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:48:14,278 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:48:14,279 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:48:14,280 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:48:14,282 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:48:14,283 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:48:14,284 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:48:14,285 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:48:14,312 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:48:14,314 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:48:14,316 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:48:14,317 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:48:14,318 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:48:14,320 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult
+2020-05-11 15:49:22,196 [main] TRACE b.b.games.services.GamesServices - hashmap mapCategory loaded
+2020-05-11 15:49:22,200 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = combination
+2020-05-11 15:49:22,202 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = fantasy
+2020-05-11 15:49:22,203 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = adventure
+2020-05-11 15:49:22,204 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = puzzle
+2020-05-11 15:49:22,206 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = horror
+2020-05-11 15:49:22,207 [main] TRACE b.b.games.services.GamesServices - Key = 6, Value = dice games
+2020-05-11 15:49:22,208 [main] TRACE b.b.games.services.GamesServices - Key = 7, Value = cooperative
+2020-05-11 15:49:22,209 [main] TRACE b.b.games.services.GamesServices - Key = 8, Value = sports
+2020-05-11 15:49:22,211 [main] TRACE b.b.games.services.GamesServices - Key = 9, Value = skills
+2020-05-11 15:49:22,212 [main] TRACE b.b.games.services.GamesServices - Key = 10, Value = maths
+2020-05-11 15:49:22,214 [main] TRACE b.b.games.services.GamesServices - Key = 11, Value = luck
+2020-05-11 15:49:22,215 [main] TRACE b.b.games.services.GamesServices - Key = 12, Value = gambling
+2020-05-11 15:49:22,216 [main] TRACE b.b.games.services.GamesServices - Key = 13, Value = financial
+2020-05-11 15:49:22,218 [main] TRACE b.b.games.services.GamesServices - Key = 14, Value = educational
+2020-05-11 15:49:22,219 [main] TRACE b.b.games.services.GamesServices - Key = 15, Value = construction
+2020-05-11 15:49:22,220 [main] TRACE b.b.games.services.GamesServices - Key = 16, Value = bluff
+2020-05-11 15:49:22,221 [main] TRACE b.b.games.services.GamesServices - Key = 17, Value = roleplay
+2020-05-11 15:49:22,223 [main] TRACE b.b.games.services.GamesServices - Key = 18, Value = simulation
+2020-05-11 15:49:22,224 [main] TRACE b.b.games.services.GamesServices - Key = 19, Value = tactics
+2020-05-11 15:49:22,225 [main] TRACE b.b.games.services.GamesServices - Key = 20, Value = language
+2020-05-11 15:49:22,227 [main] TRACE b.b.games.services.GamesServices - Key = 21, Value = brain games
+2020-05-11 15:49:22,228 [main] TRACE b.b.games.services.GamesServices - Key = 22, Value = card games
+2020-05-11 15:49:22,229 [main] TRACE b.b.games.services.GamesServices - Key = 23, Value = board games
+2020-05-11 15:49:22,231 [main] TRACE b.b.games.services.GamesServices - Key = 24, Value = memory games
+2020-05-11 15:49:22,232 [main] TRACE b.b.games.services.GamesServices - Key = 25, Value = war
+2020-05-11 15:49:22,233 [main] TRACE b.b.games.services.GamesServices - Key = 26, Value = quiz
+2020-05-11 15:49:22,234 [main] TRACE b.b.games.services.GamesServices - Key = 27, Value = strategy
+2020-05-11 15:49:22,236 [main] TRACE b.b.games.services.GamesServices - Key = 28, Value = running
+2020-05-11 15:49:22,263 [main] TRACE b.b.games.services.GamesServices - hashmap mapDifficulty loaded
+2020-05-11 15:49:22,265 [main] TRACE b.b.games.services.GamesServices - Key = 1, Value = very easy
+2020-05-11 15:49:22,266 [main] TRACE b.b.games.services.GamesServices - Key = 2, Value = easy
+2020-05-11 15:49:22,268 [main] TRACE b.b.games.services.GamesServices - Key = 3, Value = average
+2020-05-11 15:49:22,269 [main] TRACE b.b.games.services.GamesServices - Key = 4, Value = difficult
+2020-05-11 15:49:22,271 [main] TRACE b.b.games.services.GamesServices - Key = 5, Value = very difficult

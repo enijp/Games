@@ -155,7 +155,8 @@ public class Game {
 		return System.out.printf("Name=%-40s  Editor=%-25s  Age=%-20s  Price=%6.2f%n", game_name, editor, age, price);
 	}
 
-	public String toStringLight2() {
-		return "game_name=" + game_name + "\t" + "editor=" + editor + "\t" + "price=" + price;
+	public PrintStream toStringFmtLight2() {
+		return System.out.printf("Name=%-50s  Editor=%-25s  Price=%6.2f%n", game_name, editor, price); 
+//		return "game_name=" + game_name + "\t" + "editor=" + editor + "\t" + "price=" + price;
 	}
 }

@@ -84,21 +84,19 @@ public class GamesApplication {
 				break;
 			case "5":
 				// d'abord via le tri SQL
-				System.out.println("1) sorted via SQL");
+				logger.info("1) sorted via SQL");
 				myApp.showAllGamesSortedViaSql();
 				// ensuite via le tri sur les games de la class Game
-				System.out.println("2) sorted via internal sort");
+				logger.info("2) sorted via internal sort");
 				myApp.showAllGamesSortedViaInternal();
 				break;
 			case "6":
 				// list of all games with category
-				System.out.println("All games List");
-				System.out.println("--------------");
 				myApp.showAllGamesWithCategory(mapCategory);
 				try {
 					myApp.showAllDetailsGameSelectedByName(myApp.askForGameName(), mapCategory, mapDifficulty);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 				break;
 			case "7":// borrowed games
@@ -106,15 +104,11 @@ public class GamesApplication {
 				while (loopOption7) {
 					myApp.showMenuPart7();
 					String choice7 = myApp.askForChoice();
-					switch (choice7) {
+					switch (choice7.toLowerCase()) {
 					case "1":// liste de tous les borrowed games
-						System.out.println("All Borrowed Games");
-						System.out.println("------------------");
 						myApp.showAllBorrowedGamesSortedViaSql();
 						break;
 					case "2":// liste de tous les borrowers
-						System.out.println("List of all Borrowers");
-						System.out.println("---------------------");
 						myApp.showAllBorrowersSortedViaSql();
 						break;
 					case "3":// introduire le borrower name et donner la liste des
@@ -122,37 +116,32 @@ public class GamesApplication {
 						try {
 							myApp.showAllDetailsBorrowerSelectedByName(myApp.askForBorrowerName());
 						} catch (inputStringException e) {
-							// nothing to do, just return to the borrower menu
-							// e.pprintStackTrace();
-							continue;
+							logger.error(e.getMessage());
 						}
 						break;
-					case "X":
 					case "x":
 						loopOption7 = false;
 						break;
 					default:
-						System.out.println("your choice '" + choice7 + "' is invalid");
+						if (choice7.isEmpty()) {
+							logger.error("Your entry is empty; you have to make a choice:");
+						} else {
+							logger.error("Your choice '{}' is invalid", choice7);
+						}
 						break;
 					}
 				}
 				break;
 			case "8":// difficulty level
 				// list of difficulty levels
-				System.out.println("Difficulty Game Levels");
-				System.out.println("----------------------");
 				myApp.showDifficultyLevels(mapDifficulty);
-				// en then the user enter the level that he wants to show the games
+				// then the user enter the minimum level of the games he wants to show
 				try {
-					// myApp.askForDifficultyLevel(mapDifficulty);
-					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty),
-							mapCategory, mapDifficulty);
+					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty), mapCategory,
+							mapDifficulty);
 				} catch (inputStringException e) {
-					// e1.printStackTrace();
-					System.out.println(e.getMessage());
-
+					logger.error(e.getMessage());
 				}
-
 				break;
 			case "9":
 				// introduire le borrower name et donner la liste des
@@ -160,23 +149,17 @@ public class GamesApplication {
 				try {
 					myApp.showListOfBorrowerSelectedByName(myApp.askForBorrowerName());
 				} catch (inputStringException e) {
-					// nothing to do, just return to the borrower menu
-					// e.pprintStackTrace();
-					continue;
+					logger.error(e.getMessage());
 				}
 				break;
 			case "10":// list of borrowed games between 2 dates
-				// demander les 2 dates et vérifier qu'elles sont correctes
+				// ask start and end dates and check if they are valid
 				Date startDate = myApp.askForDate("Please enter the start date of the borrowing:");
 				if (startDate == null)
 					break;
 				Date endDate = myApp.askForDate("Please enter the end date of the borrowing:");
-
 				if (endDate == null)
 					break;
-
-				// System.out.println("dates are ok");
-				// select borrowed games between these 2 dates
 				myApp.showBorrowedGamesBetween2Dates(startDate, endDate);
 
 				break;
@@ -184,7 +167,7 @@ public class GamesApplication {
 				try {
 					myApp.writeGameDataSelectedByNameToFile(myApp.askForGameName(), mapCategory, mapDifficulty);
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 				break;
 			case "12":// new game category
@@ -216,9 +199,10 @@ public class GamesApplication {
 	}
 
 	private void showMenu0() {
-		String[] menu1 = { " 1. Show a game category of your choice", " 2. Show a Game of your choice", " 3. Show a Borrower id",
-				" 4. Show a game of your choice", " 5. Show all Games", " 6. Show a list of Games and Choose a Game",
-				" 7. Show borrowed games", " 8. Advanced search: difficulty", " 9. Complex search : borrowers",
+		String[] menu1 = { " 1. Show a game category of your choice", " 2. Show a Game of your choice",
+				" 3. Show a Borrower id", " 4. Show a game of your choice", " 5. Show all Games",
+				" 6. Show a list of Games and Choose a Game", " 7. Show borrowed games",
+				" 8. Advanced search: difficulty", " 9. Complex search : borrowers",
 				"10. List of borrowed games between 2 dates",
 				"11. Write a game list of you choice to a file (csv formatted)", "12. Insert a new Difficulty Level",
 				" ", "X. Quit the Games Application", " " };
@@ -292,7 +276,6 @@ public class GamesApplication {
 			if (myGameName.isEmpty()) {
 				throw new inputStringException("Your entry is empty!  You must enter something");
 			}
-
 		} catch (InputMismatchException e) {
 			throw new inputStringException("Wrong entry !  You must enter something");
 		}
@@ -304,10 +287,8 @@ public class GamesApplication {
 		try {
 			myBorrowerName = myInputText("Please enter the borrower name (or a part of) you want to search for:");
 			if (myBorrowerName.isEmpty()) {
-				// if entry empty, return to the menu
-				throw new inputStringException("Your entry is empty!  I'm returning to the menu...");
+				throw new inputStringException("Your entry is empty!  You must enter something");
 			}
-
 		} catch (InputMismatchException e) {
 			throw new inputStringException("Wrong entry !  You must enter something");
 		}
@@ -318,14 +299,14 @@ public class GamesApplication {
 		int myDifficultyLevel;
 		try {
 			myDifficultyLevel = myInputInt(
-					"Please enter the difficulty level number of the games you want to search for:");
+					"Please enter the minimum difficulty level number of the games you want to search for:");
 			if (mapDifficulty.get(myDifficultyLevel) != null) {
 				System.out.println(
-						"You choose the level " + myDifficultyLevel + " = " + mapDifficulty.get(myDifficultyLevel));
+						"You choose the minimum level " + 
+				myDifficultyLevel + " = " + mapDifficulty.get(myDifficultyLevel) + "\n");
 			} else {
-				throw new inputStringException("The level number " + myDifficultyLevel + " you entered is not valid");
+				throw new inputStringException("The minimum level number " + myDifficultyLevel + " you entered is not valid");
 			}
-
 		} catch (InputMismatchException e) {
 			throw new inputStringException("Wrong entry !  You must enter a valid number");
 		}
@@ -364,7 +345,6 @@ public class GamesApplication {
 
 	public void writeGameDataSelectedByNameToFile(String gameName, HashMap<Integer, String> mapCategory,
 			HashMap<Integer, String> mapDifficulty) {
-
 		String myFolder = askForDirectory();
 		String myFileName = askForFileName(myFolder);
 		gamesServices.writeGameDataSelectedByNameToFile(gameName, myFileName);
@@ -413,7 +393,6 @@ public class GamesApplication {
 
 	private HashMap<Integer, String> fillCategoryMap() {
 		return gamesServices.fillCategoryMap();
-
 	}
 
 	void insertNewLevelDifficulty() {
@@ -424,12 +403,17 @@ public class GamesApplication {
 	}
 
 	private void showAllGamesWithCategory(HashMap<Integer, String> mapCategory) {
+		System.out.println("All games List");
+		System.out.println("--------------");
 		gamesServices.showAllGamesWithCategory(mapCategory);
-
+		System.out.println("--------------");
 	}
 
 	public void showAllBorrowedGamesSortedViaSql() {
+		System.out.println("All Borrowed Games");
+		System.out.println("------------------");
 		gamesServices.showAllBorrowedGamesSortedViaSql();
+		System.out.println("------------------");
 	}
 
 	public void showBorrowedGamesBetween2Dates(Date startDate, Date endDate) {
@@ -437,7 +421,10 @@ public class GamesApplication {
 	}
 
 	public void showAllBorrowersSortedViaSql() {
+		System.out.println("List of all Borrowers");
+		System.out.println("---------------------");
 		gamesServices.showAllBorrowersSortedViaSql();
+		System.out.println("---------------------");
 	}
 
 	public void showAllDetailsBorrowerSelectedByName(String borrowerName) {
@@ -449,11 +436,9 @@ public class GamesApplication {
 	}
 
 	public void showDifficultyLevels(HashMap<Integer, String> mapDifficulty) {
-		// for (Map.Entry mapentry : mapDifficulty.entrySet()) {
-		// System.out.println(mapentry.getKey() + " : " + mapentry.getValue());
-		// }
+		System.out.println("Difficulty Game Levels");
+		System.out.println("----------------------");
 		mapDifficulty.forEach((k, v) -> System.out.println(k + " : " + v));
-
 	}
 
 	public void showAllGamesWithSelectedDifficultyLevel(int difficultyId, HashMap<Integer, String> mapCategory,
@@ -464,19 +449,16 @@ public class GamesApplication {
 
 	public Date askForDate(String wording) {
 		String myDateString = myInputText(wording + " (format dd-mm-ccyy):");
-
 		DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 		Date mydate = null;
 		if (isDateValid(myDateString, "dd-MM-yyyy")) {
-			// System.out.println("date ok");
 			try {
 				mydate = df.parse(myDateString);
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
-			System.out.println("This value is not a valid date !");
+			logger.error("This value is not a valid date in the format dd-mm-ccyy!");
 		}
 		return mydate;
 	}
@@ -501,9 +483,6 @@ public class GamesApplication {
 	public int myInputInt(String textToDisplay) {
 		scanner = new Scanner(System.in);
 		System.out.println(textToDisplay);
-		// int myInputInt = scanner.nextInt();
-//
-		// return myInputInt;
 		int myInputInt = 0;
 		Boolean loop = true;
 		while (loop) {

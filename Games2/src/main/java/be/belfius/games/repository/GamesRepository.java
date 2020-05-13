@@ -3,6 +3,8 @@ package be.belfius.games.repository;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,39 +83,101 @@ public class GamesRepository {
 		return Collections.emptyList();
 	}
 
-	// ****
+	public String addElementWithSeparator(String lx, String strToAdd, String sep) {
+		return lx.concat(strToAdd + sep);
+	}
+
+	static ArrayList<Method> findGetters(Class<?> c, String fName) {
+		ArrayList<Method> list = new ArrayList<Method>();
+		Method[] methods = c.getDeclaredMethods();
+		// System.out.println("search for " + fName);
+		for (Method method : methods) {
+			// System.out.println("method=" + method.getName());
+			if (method.getName().equals("get" + fName))
+				list.add(method);
+		}
+		return list;
+	}
+
+	// test to be continued
+	// write the values dynamically
+//				myList.forEach((x) -> {
+//					String lx = "";
+//					lx = addElementWithSeparator(lx, String.valueOf(x.getId()), sep);
+//					for (Field field2 : field) {
+//					String name = field2.getName();
+//					System.out.println("processing field=" + name);
+//					String nx = name.toUpperCase().substring(0, 1);
+//					System.out.println("nx=" + nx);
+//					String nn = name.substring(1);
+//
+//					// find the getters of this field
+//					for (Method method : findGetters(Game.class, nx + nn)) {
+//						System.out.println("method found=" + method);
+//							try {
+//								System.out.println("invoke=" + method.invoke(x, ""));
+//							} catch (IllegalAccessException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							} catch (IllegalArgumentException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							} catch (InvocationTargetException e) {
+//								// TODO Auto-generated catch block
+//								e.printStackTrace();
+//							}
+//					}
+
 	public void WriteSelectGamesToFile(List<Game> myList, String fileName) {
-		// fileName.concat(".csv");
-		System.out.println("nom du fichier output:" + fileName);
+		// logger.info("output filename=" + fileName);
+		String sep = ";";
 		try (BufferedWriter outLine = new BufferedWriter(new FileWriter(fileName))) {
-			char sep = ',';
+			Field[] field = Game.class.getDeclaredFields();
+			String lx1 = "";
+			logger.trace("fields of the Game class:");
+			for (Field field2 : field) {
+				logger.trace("name=" + field2.getName() + " / type=" + field2.getType());
+			}
+			// write the labels of the fields
+			for (Field field2 : field) {
+				lx1 = lx1.concat(field2.getName() + sep);
+			}
+			// write this 1rst lien without the last separator
+			outLine.write(lx1.substring(0, lx1.lastIndexOf(sep)));
+			outLine.newLine();
+
 			myList.forEach((x) -> {
-				String lineToPrint = String.valueOf(x.getId()) + sep + x.getGame_name() + sep + x.getEditor() + sep
-						+ x.getAuthor() + sep + x.getYear_edition() + sep + x.getAge() + sep + x.getMin_players() + sep
-						+ x.getMax_players() + sep + x.getCategory_id() + sep + x.getPlay_duration() + sep
-						+ x.getDifficulty_id() + x.getPrice() + sep + x.getImage();
+				String lx = "";
+				lx = addElementWithSeparator(lx, String.valueOf(x.getId()), sep);
+				lx = addElementWithSeparator(lx, x.getGame_name(), sep);
+				lx = addElementWithSeparator(lx, x.getEditor(), sep);
+				lx = addElementWithSeparator(lx, x.getAuthor(), sep);
+				lx = addElementWithSeparator(lx, String.valueOf(x.getYear_edition()), sep);
+				lx = addElementWithSeparator(lx, x.getAge(), sep);
+				lx = addElementWithSeparator(lx, String.valueOf(x.getMin_players()), sep);
+				lx = addElementWithSeparator(lx, String.valueOf(x.getMax_players()), sep);
+				lx = addElementWithSeparator(lx, String.valueOf(x.getCategory_id()), sep);
+				lx = addElementWithSeparator(lx, x.getPlay_duration(), sep);
+				lx = addElementWithSeparator(lx, String.valueOf(x.getDifficulty_id()), sep);
+				lx = addElementWithSeparator(lx, String.valueOf(x.getPrice()), sep);
+				lx = addElementWithSeparator(lx, x.getImage(), "");
 				try {
-					outLine.write(lineToPrint);
+					outLine.write(lx);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					logger.error(e.getMessage());
 					e.printStackTrace();
 				}
 				try {
 					outLine.newLine();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					logger.error(e.getMessage());
 					e.printStackTrace();
 				}
 			});
-
-		} catch (
-
-		IOException e) {
-			// TODO Auto-generated catch block
+		} catch (IOException e) {
+			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		// write a csv file
-
 	}
 
 	public List<Game> selectGameByName(String gameName) {
@@ -242,33 +307,6 @@ public class GamesRepository {
 
 	public List<Borrowed_game> selectAllBorrowedGamesSortedOrNot(String orderByClause) {
 		return selectBorrowedGames(orderByClause, " ");
-//		ArrayList<Borrowed_game> myList = new ArrayList<Borrowed_game>();
-//		try (Connection myCon = new Database().createConnection()) {
-//			PreparedStatement statement = myCon
-//					.prepareStatement("SELECT t1.game_name, t2.borrower_name, " + "t3.borrow_date, t3.return_date"
-//							+ " FROM Game t1, Borrower t2, Borrow t3 " + " where t1.id = t3.game_id "
-//							+ "and t2.id = t3.borrower_id" + (orderByClause.isEmpty() ? "" : " " + orderByClause));
-//			ResultSet myResultSet = statement.executeQuery();
-//			while (myResultSet.next()) {
-//				Borrowed_game borrowed_game = new Borrowed_game();
-//				Game game = new Game();
-//				Borrow borrow = new Borrow();
-//				Borrower borrower = new Borrower();
-//				game.setGame_name(myResultSet.getString("game_name"));
-//				borrower.setBorrower_name(myResultSet.getString("borrower_name"));
-//				borrow.setBorrow_date(myResultSet.getDate("borrow_date"));
-//				borrow.setReturn_date(myResultSet.getDate("return_date"));
-//				borrowed_game.setGame(game);
-//				borrowed_game.setBorrower(borrower);
-//				borrowed_game.setBorrow(borrow);
-//				myList.add(borrowed_game);
-//			}
-//			return myList;
-//		} catch (SQLException e) {
-//			logger.error("in selectAllBorrowedGamesSortedOrNot", e);
-//			e.printStackTrace();
-//		}
-//		return Collections.emptyList();
 	}
 
 	public List<Borrowed_game> selectBorrowedGames(String orderByClause, String whereClause) {

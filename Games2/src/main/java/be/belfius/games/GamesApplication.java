@@ -47,7 +47,6 @@ public class GamesApplication {
 		mapDifficulty = myApp.fillDifficultyMap();
 
 		System.out.println("");
-
 		boolean loop = true;
 		while (loop) {
 
@@ -161,7 +160,6 @@ public class GamesApplication {
 				if (endDate == null)
 					break;
 				myApp.showBorrowedGamesBetween2Dates(startDate, endDate);
-
 				break;
 			case "11":// écrire la liste des games dans un fichier
 				try {
@@ -175,8 +173,7 @@ public class GamesApplication {
 				break;
 			case "X":
 			case "x":
-				// myApp.closeGamesDB(myCon);
-				System.out.println("bye bye...");
+				logger.info("GamesApplication ends... bye bye !");
 				loop = false;
 				break;
 			default:
@@ -186,12 +183,9 @@ public class GamesApplication {
 					logger.error("Your choice '{}' is invalid", choice);
 				}
 				break;
-
 			}
 			System.out.println("");
-
 		}
-
 	}
 
 	private String askForChoice() {
@@ -199,7 +193,7 @@ public class GamesApplication {
 	}
 
 	private void showMenu0() {
-		String[] menu1 = { " 1. Show a game category of your choice", " 2. Show a Game of your choice",
+		String[] menu = { " 1. Show a game category of your choice", " 2. Show a Game of your choice",
 				" 3. Show a Borrower id", " 4. Show a game of your choice", " 5. Show all Games",
 				" 6. Show a list of Games and Choose a Game", " 7. Show borrowed games",
 				" 8. Advanced search: difficulty", " 9. Complex search : borrowers",
@@ -208,35 +202,20 @@ public class GamesApplication {
 				" ", "X. Quit the Games Application", " " };
 		System.out.println("           Games Application    (by J-Ph. Genicot)");
 		System.out.println("           -----------------" + "\n");
-
-		for (int i = 0; i < menu1.length; i++) {
-			System.out.println(menu1[i]);
+		for (int i = 0; i < menu.length; i++) {
+			System.out.println(menu[i]);
 		}
 	}
 
 	private void showMenuPart7() {
-		String[] menu1 = { "1. Show all the borrowed games", "2. Show a list of all the borrowers",
+		String[] menu = { "1. Show all the borrowed games", "2. Show a list of all the borrowers",
 				"3. Show the borrowed games for a borrower of your choice", " ", "X. Quit this menu", " " };
 		System.out.println("Borrowed Games Menu");
 		System.out.println("-------------------");
-
-		for (int i = 0; i < menu1.length; i++) {
-			System.out.println(menu1[i]);
+		for (int i = 0; i < menu.length; i++) {
+			System.out.println(menu[i]);
 		}
 	}
-
-//	private void closeGamesDB(Connection myCon) {
-//		gamesServices.closeGamesDB(myCon);
-//	}
-//
-//	Connection connectToGamesDB(String url, String login, String password, String driver) {
-//		try {
-//			return gamesServices.connectToGamesDB(url, login, password, driver);
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
 
 	public int askForCategoryId() throws inputNumericException {
 		int myReturnInt = 0;
@@ -352,27 +331,22 @@ public class GamesApplication {
 	}
 
 	public String askForDirectory() {
-		String folderx = askForNewFolderName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFolder"));
-		File folder = new File(folderx);
+		File folder = new File(askForNewFolderName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFolder")));
 		if (!folder.exists()) {
 			folder.mkdir();
-			System.out.println("folder=" + folder);
+			logger.info("a new folder=" + folder + " has been created");
 		}
-		return folderx;
+		return folder.toString();
 	}
 
 	public String askForFileName(String folder) {
-		String myFileName = askForNewFileName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFileName"));
-		File fileName = new File(folder + myFileName);
-		System.out.println("filename=" + fileName.toString());
-		// if (!fileName.exists()) {
-		// try {
-		// fileName.createNewFile();
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-		// }
-		return fileName.toString();
+		File fileName = new File(folder + "/" +askForNewFileName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFileName")));
+		//check if the filename has a .txt extension : if not, add it
+		String myFileName = fileName.toString();
+		String ext = myFileName.substring(myFileName.lastIndexOf(".") + 1); 
+		if (!ext.equalsIgnoreCase("txt")) myFileName += ".txt";
+		logger.info("output filename=" + myFileName);
+		return myFileName;
 	}
 
 	public String askForNewFolderName(String folderx) {

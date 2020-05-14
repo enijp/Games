@@ -48,3 +48,89 @@
 2020-05-14 08:56:32,675 [main] TRACE b.b.games.repository.GamesRepository - name=difficulty_id / type=int
 2020-05-14 08:56:32,676 [main] TRACE b.b.games.repository.GamesRepository - name=price / type=float
 2020-05-14 08:56:32,678 [main] TRACE b.b.games.repository.GamesRepository - name=image / type=class java.lang.String
+2020-05-14 13:38:35,854 [main] TRACE b.b.games.repository.GamesRepository - hashmap mapCategory loaded
+2020-05-14 13:38:35,861 [main] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = combination
+2020-05-14 13:38:35,863 [main] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = fantasy
+2020-05-14 13:38:35,865 [main] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = adventure
+2020-05-14 13:38:35,884 [main] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = puzzle
+2020-05-14 13:38:35,886 [main] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = horror
+2020-05-14 13:38:35,890 [main] TRACE b.b.games.repository.GamesRepository - Key = 6, Value = dice games
+2020-05-14 13:38:35,891 [main] TRACE b.b.games.repository.GamesRepository - Key = 7, Value = cooperative
+2020-05-14 13:38:35,893 [main] TRACE b.b.games.repository.GamesRepository - Key = 8, Value = sports
+2020-05-14 13:38:36,011 [main] TRACE b.b.games.repository.GamesRepository - Key = 9, Value = skills
+2020-05-14 13:38:36,012 [main] TRACE b.b.games.repository.GamesRepository - Key = 10, Value = maths
+2020-05-14 13:38:36,015 [main] TRACE b.b.games.repository.GamesRepository - Key = 11, Value = luck
+2020-05-14 13:38:36,085 [main] TRACE b.b.games.repository.GamesRepository - Key = 12, Value = gambling
+2020-05-14 13:38:36,088 [main] TRACE b.b.games.repository.GamesRepository - Key = 13, Value = financial
+2020-05-14 13:38:36,089 [main] TRACE b.b.games.repository.GamesRepository - Key = 14, Value = educational
+2020-05-14 13:38:36,095 [main] TRACE b.b.games.repository.GamesRepository - Key = 15, Value = construction
+2020-05-14 13:38:36,102 [main] TRACE b.b.games.repository.GamesRepository - Key = 16, Value = bluff
+2020-05-14 13:38:36,104 [main] TRACE b.b.games.repository.GamesRepository - Key = 17, Value = roleplay
+2020-05-14 13:38:36,105 [main] TRACE b.b.games.repository.GamesRepository - Key = 18, Value = simulation
+2020-05-14 13:38:36,108 [main] TRACE b.b.games.repository.GamesRepository - Key = 19, Value = tactics
+2020-05-14 13:38:36,108 [main] TRACE b.b.games.repository.GamesRepository - Key = 20, Value = language
+2020-05-14 13:38:36,110 [main] TRACE b.b.games.repository.GamesRepository - Key = 21, Value = brain games
+2020-05-14 13:38:36,113 [main] TRACE b.b.games.repository.GamesRepository - Key = 22, Value = card games
+2020-05-14 13:38:36,113 [main] TRACE b.b.games.repository.GamesRepository - Key = 23, Value = board games
+2020-05-14 13:38:36,115 [main] TRACE b.b.games.repository.GamesRepository - Key = 24, Value = memory games
+2020-05-14 13:38:36,117 [main] TRACE b.b.games.repository.GamesRepository - Key = 25, Value = war
+2020-05-14 13:38:36,136 [main] TRACE b.b.games.repository.GamesRepository - Key = 26, Value = quiz
+2020-05-14 13:38:36,271 [main] TRACE b.b.games.repository.GamesRepository - Key = 27, Value = strategy
+2020-05-14 13:38:36,277 [main] TRACE b.b.games.repository.GamesRepository - Key = 28, Value = running
+2020-05-14 13:38:36,642 [main] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-14 13:38:36,644 [main] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-14 13:38:36,645 [main] TRACE b.b.games.repository.GamesRepository - Key = 97, Value = insoluble
+2020-05-14 13:38:36,647 [main] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-14 13:38:36,649 [main] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-14 13:38:36,650 [main] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-14 13:38:36,652 [main] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-14 13:47:04,542 [main] TRACE b.b.games.repository.GamesRepository - hashmap mapCategory loaded
+2020-05-14 13:47:04,548 [main] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = combination
+2020-05-14 13:47:04,550 [main] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = fantasy
+2020-05-14 13:47:04,552 [main] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = adventure
+2020-05-14 13:47:04,553 [main] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = puzzle
+2020-05-14 13:47:04,554 [main] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = horror
+2020-05-14 13:47:04,556 [main] TRACE b.b.games.repository.GamesRepository - Key = 6, Value = dice games
+2020-05-14 13:47:04,558 [main] TRACE b.b.games.repository.GamesRepository - Key = 7, Value = cooperative
+2020-05-14 13:47:04,560 [main] TRACE b.b.games.repository.GamesRepository - Key = 8, Value = sports
+2020-05-14 13:47:04,561 [main] TRACE b.b.games.repository.GamesRepository - Key = 9, Value = skills
+2020-05-14 13:47:04,563 [main] TRACE b.b.games.repository.GamesRepository - Key = 10, Value = maths
+2020-05-14 13:47:04,565 [main] TRACE b.b.games.repository.GamesRepository - Key = 11, Value = luck
+2020-05-14 13:47:04,572 [main] TRACE b.b.games.repository.GamesRepository - Key = 12, Value = gambling
+2020-05-14 13:47:04,573 [main] TRACE b.b.games.repository.GamesRepository - Key = 13, Value = financial
+2020-05-14 13:47:04,574 [main] TRACE b.b.games.repository.GamesRepository - Key = 14, Value = educational
+2020-05-14 13:47:04,576 [main] TRACE b.b.games.repository.GamesRepository - Key = 15, Value = construction
+2020-05-14 13:47:04,577 [main] TRACE b.b.games.repository.GamesRepository - Key = 16, Value = bluff
+2020-05-14 13:47:04,579 [main] TRACE b.b.games.repository.GamesRepository - Key = 17, Value = roleplay
+2020-05-14 13:47:04,580 [main] TRACE b.b.games.repository.GamesRepository - Key = 18, Value = simulation
+2020-05-14 13:47:04,582 [main] TRACE b.b.games.repository.GamesRepository - Key = 19, Value = tactics
+2020-05-14 13:47:04,583 [main] TRACE b.b.games.repository.GamesRepository - Key = 20, Value = language
+2020-05-14 13:47:04,584 [main] TRACE b.b.games.repository.GamesRepository - Key = 21, Value = brain games
+2020-05-14 13:47:04,586 [main] TRACE b.b.games.repository.GamesRepository - Key = 22, Value = card games
+2020-05-14 13:47:04,588 [main] TRACE b.b.games.repository.GamesRepository - Key = 23, Value = board games
+2020-05-14 13:47:04,598 [main] TRACE b.b.games.repository.GamesRepository - Key = 24, Value = memory games
+2020-05-14 13:47:04,694 [main] TRACE b.b.games.repository.GamesRepository - Key = 25, Value = war
+2020-05-14 13:47:04,696 [main] TRACE b.b.games.repository.GamesRepository - Key = 26, Value = quiz
+2020-05-14 13:47:04,704 [main] TRACE b.b.games.repository.GamesRepository - Key = 27, Value = strategy
+2020-05-14 13:47:04,706 [main] TRACE b.b.games.repository.GamesRepository - Key = 28, Value = running
+2020-05-14 13:47:04,899 [main] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-14 13:47:04,902 [main] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-14 13:47:04,908 [main] TRACE b.b.games.repository.GamesRepository - Key = 97, Value = insoluble
+2020-05-14 13:47:04,910 [main] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-14 13:47:04,912 [main] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-14 13:47:04,915 [main] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-14 13:47:04,918 [main] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-14 13:47:30,568 [main] TRACE b.b.games.repository.GamesRepository - fields of the Game class:
+2020-05-14 13:47:30,650 [main] TRACE b.b.games.repository.GamesRepository - name=Id / type=int
+2020-05-14 13:47:30,654 [main] TRACE b.b.games.repository.GamesRepository - name=game_name / type=class java.lang.String
+2020-05-14 13:47:30,657 [main] TRACE b.b.games.repository.GamesRepository - name=editor / type=class java.lang.String
+2020-05-14 13:47:30,660 [main] TRACE b.b.games.repository.GamesRepository - name=author / type=class java.lang.String
+2020-05-14 13:47:30,663 [main] TRACE b.b.games.repository.GamesRepository - name=year_edition / type=int
+2020-05-14 13:47:30,665 [main] TRACE b.b.games.repository.GamesRepository - name=age / type=class java.lang.String
+2020-05-14 13:47:30,666 [main] TRACE b.b.games.repository.GamesRepository - name=min_players / type=int
+2020-05-14 13:47:30,668 [main] TRACE b.b.games.repository.GamesRepository - name=max_players / type=int
+2020-05-14 13:47:30,669 [main] TRACE b.b.games.repository.GamesRepository - name=category_id / type=int
+2020-05-14 13:47:30,671 [main] TRACE b.b.games.repository.GamesRepository - name=play_duration / type=class java.lang.String
+2020-05-14 13:47:30,672 [main] TRACE b.b.games.repository.GamesRepository - name=difficulty_id / type=int
+2020-05-14 13:47:30,674 [main] TRACE b.b.games.repository.GamesRepository - name=price / type=float
+2020-05-14 13:47:30,677 [main] TRACE b.b.games.repository.GamesRepository - name=image / type=class java.lang.String

@@ -2,9 +2,9 @@ package be.belfius.games.domain;
 
 public class Borrowed_game {
 
-	Game game;
-	Borrower borrower;
-	Borrow borrow;
+	private Game game;
+	private Borrower borrower;
+	private Borrow borrow;
 	
 	@Override
 	public String toString() {

@@ -202,17 +202,20 @@ public class GamesRepository {
 					Helper.loadPropertiesFile().getProperty("db.username"),
 					Helper.loadPropertiesFile().getProperty("db.password"));
 
-			statement = myCon.prepareStatement("INSERT INTO difficulty (id, difficulty_name) "
-					// + "values( ((SELECT LAST_INSERT_ID()),?)");
-					+ "VALUES ( 96, ?)");
-			System.out.println("statement=" + statement);
+			statement = myCon.prepareStatement("INSERT INTO difficulty (difficulty_name) "
+			// statement = myCon.prepareStatement("INSERT INTO difficulty (id,
+			// difficulty_name) "
+//					+ "values( ((SELECT LAST_INSERT_ID()),?)");
+					+ "values(?)");
+			// + "VALUES ( 96, ?)");
+			// System.out.println("statement=" + statement);
 			statement.setString(1, difficulty);
-			System.out.println("statement=" + statement);
+			// System.out.println("statement=" + statement);
 			try {
 				int nbIns = statement.executeUpdate();
-				System.out.println("nbre insert=" + nbIns);
+				// System.out.println("nbre insert=" + nbIns);
 				// myCon.commit();
-				System.out.println("nbre insert=" + nbIns);
+				// System.out.println("nbre insert=" + nbIns);
 			} catch (SQLException e) {
 				// TODO: handle exception
 				e.printStackTrace();

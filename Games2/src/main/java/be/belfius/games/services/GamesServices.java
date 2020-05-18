@@ -115,32 +115,32 @@ public class GamesServices {
 		System.out.println("Sorry, no result is correponding to your selection");
 	}
 
-	public List<Game> makeGameList(ResultSet myResultSet) {
-		List<Game> myGameList = new ArrayList<>();
-		try {
-			while (myResultSet.next()) {
-				Game game = new Game();
-				game.setId(myResultSet.getInt("id"));
-				game.setGame_name(myResultSet.getString("game_name"));
-				game.setEditor(myResultSet.getString("editor"));
-				game.setAuthor(myResultSet.getString("author"));
-				game.setYear_edition(myResultSet.getInt("year_edition"));
-				game.setAge(myResultSet.getString("age"));
-				game.setMin_players(myResultSet.getInt("min_players"));
-				game.setMax_players(myResultSet.getInt("max_players"));
-				game.setCategory_id(myResultSet.getInt("category_id"));
-				game.setPlay_duration(myResultSet.getString("play_duration"));
-				game.setDifficulty_id(myResultSet.getInt("difficulty_id"));
-				game.setPrice(myResultSet.getFloat("price"));
-				game.setImage(myResultSet.getString("image"));
-
-				myGameList.add(game);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return myGameList;
-	}
+//	public List<Game> makeGameList(ResultSet myResultSet) {
+//		List<Game> myGameList = new ArrayList<>();
+//		try {
+//			while (myResultSet.next()) {
+//				Game game = new Game();
+//				game.setId(myResultSet.getInt("id"));
+//				game.setGame_name(myResultSet.getString("game_name"));
+//				game.setEditor(myResultSet.getString("editor"));
+//				game.setAuthor(myResultSet.getString("author"));
+//				game.setYear_edition(myResultSet.getInt("year_edition"));
+//				game.setAge(myResultSet.getString("age"));
+//				game.setMin_players(myResultSet.getInt("min_players"));
+//				game.setMax_players(myResultSet.getInt("max_players"));
+//				game.setCategory_id(myResultSet.getInt("category_id"));
+//				game.setPlay_duration(myResultSet.getString("play_duration"));
+//				game.setDifficulty_id(myResultSet.getInt("difficulty_id"));
+//				game.setPrice(myResultSet.getFloat("price"));
+//				game.setImage(myResultSet.getString("image"));
+//
+//				myGameList.add(game);
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return myGameList;
+//	}
 
 	public void showAllGamesSortedViaSql() {
 		displayGameListDetails(gamesRepository.selectAllGamesSortedOrNot("order by game_name"), "light2");

@@ -7,6 +7,7 @@ import org.junit.runners.Suite;
 
 @RunWith(Categories.class)
 @Suite.SuiteClasses({GamesRepositoryTest.class})
-@Categories.ExcludeCategory(Slow.class)
+//@Categories.ExcludeCategory(Slow.class)
+
 public class RepositorySuite {
 }

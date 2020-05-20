@@ -134,3 +134,44 @@
 2020-05-14 13:47:30,672 [main] TRACE b.b.games.repository.GamesRepository - name=difficulty_id / type=int
 2020-05-14 13:47:30,674 [main] TRACE b.b.games.repository.GamesRepository - name=price / type=float
 2020-05-14 13:47:30,677 [main] TRACE b.b.games.repository.GamesRepository - name=image / type=class java.lang.String
+2020-05-19 15:15:57,578 [Thread-0] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-19 15:15:57,607 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-19 15:15:57,610 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 97, Value = insoluble
+2020-05-19 15:15:57,612 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-19 15:15:57,614 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-19 15:15:57,616 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-19 15:15:57,617 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-19 15:15:57,673 [Thread-0] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-19 15:15:57,675 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-19 15:15:57,677 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 97, Value = insoluble
+2020-05-19 15:15:57,680 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-19 15:15:57,682 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 98, Value = impossible
+2020-05-19 15:15:57,684 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-19 15:15:57,686 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-19 15:15:57,688 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-19 16:11:26,310 [Thread-0] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-19 16:11:26,343 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-19 16:11:26,345 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-19 16:11:26,347 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-19 16:11:26,350 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-19 16:11:26,352 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-19 16:11:26,418 [Thread-0] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-19 16:11:26,420 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-19 16:11:26,421 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-19 16:11:26,423 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-19 16:11:26,424 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 99, Value = impossible
+2020-05-19 16:11:26,427 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-19 16:11:26,429 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-19 16:13:20,286 [Thread-0] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-19 16:13:20,315 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-19 16:13:20,318 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-19 16:13:20,320 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-19 16:13:20,324 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-19 16:13:20,326 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult
+2020-05-19 16:13:20,387 [Thread-0] TRACE b.b.games.repository.GamesRepository - hashmap mapDifficulty loaded
+2020-05-19 16:13:20,389 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 1, Value = very easy
+2020-05-19 16:13:20,392 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 2, Value = easy
+2020-05-19 16:13:20,393 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 3, Value = average
+2020-05-19 16:13:20,395 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 4, Value = difficult
+2020-05-19 16:13:20,397 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 100, Value = impossible
+2020-05-19 16:13:20,400 [Thread-0] TRACE b.b.games.repository.GamesRepository - Key = 5, Value = very difficult

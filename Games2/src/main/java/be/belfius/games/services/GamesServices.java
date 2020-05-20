@@ -32,6 +32,16 @@ public class GamesServices {
 			myList.forEach(System.out::println);
 		}
 	}
+	
+	public String showOneCategoryDetails2(int id) {
+		List<Category> myList = gamesRepository.selectOneCategoryById(id);
+		if (myList.isEmpty())
+			showMessageEmptySelection();
+		else {
+			return myList.get(0).getCategory_name();
+		}
+		return null;
+	}
 
 	public void showOneBorrowerDetails(int id) {
 		List<Borrower> myList = gamesRepository.selectOneBorrowerById(id);

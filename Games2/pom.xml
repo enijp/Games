@@ -49,10 +49,10 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
-				<includes>
-					<include>*.properties</include>
-					<include>logback.xml</include>
-				</includes>
+				<!-- <includes> -->
+				<!-- <include>*.properties</include> -->
+				<!-- <include>logback.xml</include> -->
+				<!-- </includes> -->
 			</resource>
 		</resources>
 
@@ -123,6 +123,19 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.20</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>5.4.15.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.5.Final</version>
 		</dependency>
 
 		<dependency>

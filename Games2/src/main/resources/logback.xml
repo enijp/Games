@@ -52,9 +52,9 @@
 	<!-- <appender-ref ref="toAFile" /> -->
 	<!-- </logger> -->
 
-	<!-- <root level="TRACE"> -->
-	<!-- <appender-ref ref="Console" /> -->
-	<!-- </root> -->
+	<root level="INFO">
+	<appender-ref ref="Console" />
+	</root>
 
 	<logger name="be.belfius.games.repository" level="TRACE">>
 		<appender-ref ref="toAFile" />

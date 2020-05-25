@@ -16,6 +16,7 @@ import be.belfius.games.domain.Borrowed_game;
 import be.belfius.games.domain.Borrower;
 import be.belfius.games.domain.Category;
 import be.belfius.games.domain.Game;
+import be.belfius.games.domain.MyCategory;
 import be.belfius.games.repository.*;
 
 public class GamesServices {
@@ -23,7 +24,40 @@ public class GamesServices {
 	private static Logger logger = LoggerFactory.getLogger(GamesServices.class);
 
 	private GamesRepository gamesRepository = new GamesRepository();
+	private MyCategoryRepositoryJPA myCategoryRepositoryJPA = new MyCategoryRepositoryJPA();
 
+	public void addNewMyCategoryJPA(String name) {
+		MyCategory myCategory = new MyCategory(name);
+		myCategoryRepositoryJPA.save(myCategory);
+	}
+	
+	public List<MyCategory> findAll() {
+        return myCategoryRepositoryJPA.findAll();
+    }
+
+    public MyCategory findById(int id){
+    	return myCategoryRepositoryJPA.findById(id);
+	}
+
+	//public void remove(MyCategory myCategory){
+    //	myCategoryRepositoryJPA.remove(myCategory);
+	//}
+
+	//public void remove(MyCategory myCategory){
+    //    entityManager.remove(myCategory);
+    //}
+
+
+	public void removeById(int id) {
+    	myCategoryRepositoryJPA.remove(findById(id));;
+	}
+	
+	public void removeByName(String name){
+        myCategoryRepositoryJPA.remove(myCategoryRepositoryJPA.findByName(name));
+    }
+	
+	//*******************************
+	
 	public void showOneCategoryDetails(int id) {
 		List<Category> myList = gamesRepository.selectOneCategoryById(id);
 		if (myList.isEmpty())

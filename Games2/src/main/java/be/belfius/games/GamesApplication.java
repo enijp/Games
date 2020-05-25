@@ -13,6 +13,7 @@ import java.util.Scanner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import be.belfius.games.domain.MyCategory;
 import be.belfius.games.exceptions.inputNumericException;
 import be.belfius.games.exceptions.inputStringException;
 import be.belfius.games.services.GamesServices;
@@ -53,6 +54,10 @@ public class GamesApplication {
 			myApp.showMenu0();
 			String choice = myApp.askForChoice();
 			switch (choice) {
+			case "0":
+				myApp.executeVariousJPA();
+
+				break;
 			case "1":
 				try {
 					myApp.showOneCategoryDetails(myApp.askForCategoryId());
@@ -136,8 +141,8 @@ public class GamesApplication {
 				myApp.showDifficultyLevels(mapDifficulty);
 				// then the user enter the minimum level of the games he wants to show
 				try {
-					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty), mapCategory,
-							mapDifficulty);
+					myApp.showAllGamesWithSelectedDifficultyLevel(myApp.askForDifficultyLevel(mapDifficulty),
+							mapCategory, mapDifficulty);
 				} catch (inputStringException e) {
 					logger.error(e.getMessage());
 				}
@@ -193,9 +198,9 @@ public class GamesApplication {
 	}
 
 	private void showMenu0() {
-		String[] menu = { " 1. Show a game category of your choice", " 2. Show a Game of your choice",
-				" 3. Show a Borrower id", " 4. Show a game of your choice", " 5. Show all Games",
-				" 6. Show a list of Games and Choose a Game", " 7. Show borrowed games",
+		String[] menu = { " 0. new JPA category", " ", " 1. Show a game category of your choice",
+				" 2. Show a Game of your choice", " 3. Show a Borrower id", " 4. Show a game of your choice",
+				" 5. Show all Games", " 6. Show a list of Games and Choose a Game", " 7. Show borrowed games",
 				" 8. Advanced search: difficulty", " 9. Complex search : borrowers",
 				"10. List of borrowed games between 2 dates",
 				"11. Write a game list of you choice to a file (csv formatted)", "12. Insert a new Difficulty Level",
@@ -280,11 +285,11 @@ public class GamesApplication {
 			myDifficultyLevel = myInputInt(
 					"Please enter the minimum difficulty level number of the games you want to search for:");
 			if (mapDifficulty.get(myDifficultyLevel) != null) {
-				System.out.println(
-						"You choose the minimum level " + 
-				myDifficultyLevel + " = " + mapDifficulty.get(myDifficultyLevel) + "\n");
+				System.out.println("You choose the minimum level " + myDifficultyLevel + " = "
+						+ mapDifficulty.get(myDifficultyLevel) + "\n");
 			} else {
-				throw new inputStringException("The minimum level number " + myDifficultyLevel + " you entered is not valid");
+				throw new inputStringException(
+						"The minimum level number " + myDifficultyLevel + " you entered is not valid");
 			}
 		} catch (InputMismatchException e) {
 			throw new inputStringException("Wrong entry !  You must enter a valid number");
@@ -340,11 +345,13 @@ public class GamesApplication {
 	}
 
 	public String askForFileName(String folder) {
-		File fileName = new File(folder + "/" +askForNewFileName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFileName")));
-		//check if the filename has a .txt extension : if not, add it
+		File fileName = new File(
+				folder + "/" + askForNewFileName(Helper.loadPropertiesFile().getProperty("fi.defaultOutputFileName")));
+		// check if the filename has a .txt extension : if not, add it
 		String myFileName = fileName.toString();
-		String ext = myFileName.substring(myFileName.lastIndexOf(".") + 1); 
-		if (!ext.equalsIgnoreCase("txt")) myFileName += ".txt";
+		String ext = myFileName.substring(myFileName.lastIndexOf(".") + 1);
+		if (!ext.equalsIgnoreCase("txt"))
+			myFileName += ".txt";
 		logger.info("output filename=" + myFileName);
 		return myFileName;
 	}
@@ -445,6 +452,34 @@ public class GamesApplication {
 		} catch (ParseException pe) {
 		}
 		return false;
+	}
+
+	public void executeVariousJPA() {
+		gamesServices.addNewMyCategoryJPA("new1 from jp");
+		gamesServices.addNewMyCategoryJPA("new2 from jp");
+		gamesServices.addNewMyCategoryJPA("new3 from jp");
+
+		System.out.println(gamesServices.findAll());
+
+		// ou bien
+		gamesServices.findAll().stream()
+				.forEach(myCatRow -> System.out.println(myCatRow.getId() + " name:" + myCatRow.getCatName()));
+		
+		//ou bien 
+		gamesServices.findAll().stream()
+				.forEach(myCatRow -> System.out.printf("id: %d name: %s \n", myCatRow.getId(), myCatRow.getCatName()));
+
+		System.out.println(gamesServices.findById(2));
+		MyCategory foundMyCategoryById = gamesServices.findById(2);
+		System.out.printf("id: %d name: %s\n", foundMyCategoryById.getId(), foundMyCategoryById.getCatName());
+
+		// MyCategory myCatEntity2 = gamesServices.findById(jimboEntity.getId());
+		// bearService.remove(jimboEntity2);
+
+		gamesServices.removeById(2);
+
+		gamesServices.removeByName("War game");
+
 	}
 
 	// *******************************************************
